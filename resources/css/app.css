@@ -1,0 +1,91 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+/* Your custom admin CSS below */
+
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* ===== Admin shell ===== */
+:root{
+    --aside-w: 260px;
+    --aside-collapsed-w: 76px;
+    --radius-lg: 16px;
+    --soft: #f6f7fb;
+  }
+  
+  body{ background: var(--soft); }
+  
+  #app-wrapper{
+    display:flex; min-height:100vh; width:100%;
+  }
+  
+  /* ===== Sidebar ===== */
+  .aside{
+    width:var(--aside-w);
+    background:#fff; border-right:1px solid #eee;
+    position:sticky; top:0; height:100vh; padding:16px 12px;
+  }
+  .sidebar-collapsed .aside{ width:var(--aside-collapsed-w); }
+  .brand{
+    display:flex; align-items:center; gap:.5rem; padding:.5rem .75rem; margin-bottom:.75rem;
+  }
+  .brand img{ height:28px; }
+  .brand .brand-title{ font-weight:600; white-space:nowrap; }
+  
+  .menu{ list-style:none; padding:0; margin:12px 0 0 0; }
+  .menu .menu-title{
+    color:#8a8f98; font-size:.8rem; letter-spacing:.06em; text-transform:uppercase;
+    padding:.75rem .75rem .25rem;
+  }
+  .menu a{
+    display:flex; align-items:center; gap:.75rem;
+    padding:.6rem .75rem; border-radius:.75rem; color:#273240; text-decoration:none;
+  }
+  .menu a:hover{ background:#f0f4ff; }
+  .menu a.active{ background:#e9f0ff; color:#0d6efd; }
+  .menu i{ font-size:1.2rem; width:1.6rem; text-align:center; }
+  
+  /* nested list */
+  .menu .submenu{ padding-left:2.35rem; }
+  
+  .sidebar-collapsed .brand .brand-title,
+  .sidebar-collapsed .menu .menu-title,
+  .sidebar-collapsed .submenu{ display:none; }
+  .sidebar-collapsed .menu a span.label{ display:none; }
+  
+  /* ===== Main ===== */
+  .main{
+    flex:1; display:flex; flex-direction:column;
+  }
+  
+  /* Topbar */
+  .topbar{
+    height:64px; background:#fff; border-bottom:1px solid #eee;
+    display:flex; align-items:center; justify-content:space-between; padding:0 16px;
+    position:sticky; top:0; z-index:10;
+  }
+  .topbar .btn{ border-radius:10px; }
+  
+  /* Content */
+  .content{
+    padding:24px; max-width:1200px;
+  }
+  
+  /* Cards look */
+  .card-soft{ background:#fff; border:none; border-radius:var(--radius-lg); box-shadow:0 0 0 1px #f0f0f0, 0 4px 20px rgba(0,0,0,.03);}
+  .card-tile{ border-radius:14px; }
+  .card-tile--blue{ background:#eef5ff; }
+  .card-tile--green{ background:#edf9f0; }
+  .card-tile--purple{ background:#f4eefe; }
+  
+  /* Table polish */
+  .table>:not(caption)>*>*{ vertical-align:middle; }

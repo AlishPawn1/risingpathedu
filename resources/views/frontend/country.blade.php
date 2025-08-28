@@ -1,0 +1,327 @@
+@extends('layouts.main.app')
+
+@section('content')
+
+    <!--<< Breadcrumb Section Start >>-->
+    @component('components.breadcrumb', [
+        'title' => 'Country',
+        'layers' => [
+            ['label' => 'Home Page', 'url' => url('/')],
+            ['label' => 'Country'],
+        ]
+    ])
+    @endcomponent
+
+    <!--<< Countries Section Start >>-->
+    <section class="countries-section fix section-padding">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
+                    <div class="countries-card-items mt-0">
+                        <div class="thumb">
+                            <img src="{{ asset('assets/img/flag/turkey.png') }}" alt="img">
+                        </div>
+                        <div class="content">
+                            <h3><a href="{{ url('country-details') }}">turkey </a></h3>
+                            <p>Average time to resolve a
+                                cyber.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
+                    <div class="countries-card-items mt-0">
+                        <div class="thumb">
+                            <img src="{{ asset('assets/img/flag/france.png') }}" alt="img">
+                        </div>
+                        <div class="content">
+                            <h3><a href="{{ url('country-details') }}">france </a></h3>
+                            <p>Average time to resolve a
+                                cyber.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".7s">
+                    <div class="countries-card-items mt-0">
+                        <div class="thumb">
+                            <img src="{{ asset('assets/img/flag/aus.jpg') }}" alt="img">
+                        </div>
+                        <div class="content">
+                            <h3><a href="{{ url('country-details') }}">Australia </a></h3>
+                            <p>Average time to resolve a
+                                cyber.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
+                    <div class="countries-card-items mt-0">
+                        <div class="thumb">
+                            <img src="{{ asset('assets/img/flag/us.png') }}" alt="img">
+                        </div>
+                        <div class="content">
+                            <h3><a href="{{ url('country-details') }}">United States </a></h3>
+                            <p>Average time to resolve a
+                                cyber.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
+                    <div class="countries-card-items mt-0">
+                        <div class="thumb">
+                            <img src="{{ asset('assets/img/flag/india.png') }}" alt="img">
+                        </div>
+                        <div class="content">
+                            <h3><a href="{{ url('country-details') }}">India</a></h3>
+                            <p>Average time to resolve a
+                                cyber.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".7s">
+                    <div class="countries-card-items mt-0">
+                        <div class="thumb">
+                            <img src="{{ asset('assets/img/flag/dubai.png') }}" alt="img">
+                        </div>
+                        <div class="content">
+                            <h3><a href="{{ url('country-details') }}">Dubai</a></h3>
+                            <p>Average time to resolve a
+                                cyber.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--<< Case Studies Start >>-->
+    <div class="marque-section">
+        <div class="marquee-wrapper text-slider style-height">
+            <div class="marquee-inner to-left">
+                <ul class="marqee-list d-flex">
+                    <li class="marquee-item style-2">
+                        <span class="text-slider"><i class="fas fa-plane"></i></span><span
+                            class="text-slider text-style">Visa Processing</span>
+                    </li>
+                    <li class="marquee-item style-2">
+                        <span class="text-slider"><i class="fas fa-plane"></i></span><span
+                            class="text-slider text-style">Help in Documentation</span>
+                    </li>
+                    <li class="marquee-item style-2">
+                        <span class="text-slider"><i class="fas fa-plane"></i></span><span
+                            class="text-slider text-style">Immigrations</span>
+                    </li>
+                    <li class="marquee-item style-2">
+                        <span class="text-slider"><i class="fas fa-plane"></i></span><span
+                            class="text-slider text-style">Travel Partners</span>
+                    </li>
+                    <li class="marquee-item style-2">
+                        <span class="text-slider"><i class="fas fa-plane"></i></span><span
+                            class="text-slider text-style">Tours & Travel Agency</span>
+                    </li>
+                    <li class="marquee-item style-2">
+                        <span class="text-slider"><i class="fas fa-plane"></i></span><span
+                            class="text-slider text-style">Visa Processing</span>
+                    </li>
+                    <li class="marquee-item style-2">
+                        <span class="text-slider"><i class="fas fa-plane"></i></span><span
+                            class="text-slider text-style">Help in Documentation</span>
+                    </li>
+                    <li class="marquee-item style-2">
+                        <span class="text-slider"><i class="fas fa-plane"></i></span><span
+                            class="text-slider text-style">Immigrations</span>
+                    </li>
+                    <li class="marquee-item style-2">
+                        <span class="text-slider"><i class="fas fa-plane"></i></span><span
+                            class="text-slider text-style">Travel Partners</span>
+                    </li>
+                    <li class="marquee-item style-2">
+                        <span class="text-slider"><i class="fas fa-plane"></i></span><span
+                            class="text-slider text-style">Tours & Travel Agency</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--<< Country Section Start >>-->
+    <section class="country-section fix section-padding section-bg-3 bg-cover"
+        style="background-image: url('{{ asset('assets/img/flag/lines-waves1.png') }}');">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                    <div class="country-box-items mt-0">
+                        <div class="flag-thumb">
+                            <img src="{{ asset('assets/img/flag/eng.png') }}" alt="img">
+                        </div>
+                        <div class="flag-content">
+                            <h3><a href="{{ url('country-details') }}">England</a></h3>
+                            <p>
+                                creative agency we believe in the Eid
+                                and innovation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
+                    <div class="country-box-items mt-0">
+                        <div class="flag-thumb">
+                            <img src="{{ asset('assets/img/flag/russ.png') }}" alt="img">
+                        </div>
+                        <div class="flag-content">
+                            <h3><a href="{{ url('country-details') }}">Russia</a></h3>
+                            <p>
+                                creative agency we believe in the Eid
+                                and innovation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
+                    <div class="country-box-items mt-0">
+                        <div class="flag-thumb">
+                            <img src="{{ asset('assets/img/flag/bra.png') }}" alt="img">
+                        </div>
+                        <div class="flag-content">
+                            <h3><a href="{{ url('country-details') }}">Brazil</a></h3>
+                            <p>
+                                creative agency we believe in the Eid
+                                and innovation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".8s">
+                    <div class="country-box-items mt-0">
+                        <div class="flag-thumb">
+                            <img src="{{ asset('assets/img/flag/ger.png') }}" alt="img">
+                        </div>
+                        <div class="flag-content">
+                            <h3><a href="{{ url('country-details') }}">Germany</a></h3>
+                            <p>
+                                creative agency we believe in the Eid
+                                and innovation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--<< Case Studies Start >>-->
+    <div class="marque-section">
+        <div class="marquee-wrapper text-slider style-height">
+            <div class="marquee-inner to-right">
+                <ul class="marqee-list d-flex">
+                    <li class="marquee-item style-2">
+                        <span class="text-slider"><i class="fas fa-plane"></i></span><span
+                            class="text-slider text-style">Visa Processing</span>
+                    </li>
+                    <li class="marquee-item style-2">
+                        <span class="text-slider"><i class="fas fa-plane"></i></span><span
+                            class="text-slider text-style">Help in Documentation</span>
+                    </li>
+                    <li class="marquee-item style-2">
+                        <span class="text-slider"><i class="fas fa-plane"></i></span><span
+                            class="text-slider text-style">Immigrations</span>
+                    </li>
+                    <li class="marquee-item style-2">
+                        <span class="text-slider"><i class="fas fa-plane"></i></span><span
+                            class="text-slider text-style">Travel Partners</span>
+                    </li>
+                    <li class="marquee-item style-2">
+                        <span class="text-slider"><i class="fas fa-plane"></i></span><span
+                            class="text-slider text-style">Tours & Travel Agency</span>
+                    </li>
+                    <li class="marquee-item style-2">
+                        <span class="text-slider"><i class="fas fa-plane"></i></span><span
+                            class="text-slider text-style">Visa Processing</span>
+                    </li>
+                    <li class="marquee-item style-2">
+                        <span class="text-slider"><i class="fas fa-plane"></i></span><span
+                            class="text-slider text-style">Help in Documentation</span>
+                    </li>
+                    <li class="marquee-item style-2">
+                        <span class="text-slider"><i class="fas fa-plane"></i></span><span
+                            class="text-slider text-style">Immigrations</span>
+                    </li>
+                    <li class="marquee-item style-2">
+                        <span class="text-slider"><i class="fas fa-plane"></i></span><span
+                            class="text-slider text-style">Travel Partners</span>
+                    </li>
+                    <li class="marquee-item style-2">
+                        <span class="text-slider"><i class="fas fa-plane"></i></span><span
+                            class="text-slider text-style">Tours & Travel Agency</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--<< Country Section Start >>-->
+    <section class="country-section-4 fix section-padding">
+        <div class="container">
+            <div class="swiper flag-slider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="country-box-items style-2 mt-0">
+                            <div class="flag-thumb">
+                                <img src="{{ asset('assets/img/flag/eng.png') }}" alt="img">
+                            </div>
+                            <div class="flag-content">
+                                <h3><a href="{{ url('country-details') }}">England</a></h3>
+                                <p>
+                                    creative agency we believe in the Eid
+                                    and innovation.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="country-box-items style-2 mt-0">
+                            <div class="flag-thumb">
+                                <img src="{{ asset('assets/img/flag/russ.png') }}" alt="img">
+                            </div>
+                            <div class="flag-content">
+                                <h3><a href="{{ url('country-details') }}">Russia</a></h3>
+                                <p>
+                                    creative agency we believe in the Eid
+                                    and innovation.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="country-box-items style-2 mt-0">
+                            <div class="flag-thumb">
+                                <img src="{{ asset('assets/img/flag/bra.png') }}" alt="img">
+                            </div>
+                            <div class="flag-content">
+                                <h3><a href="{{ url('country-details') }}">Brazil</a></h3>
+                                <p>
+                                    creative agency we believe in the Eid
+                                    and innovation.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="country-box-items style-2 mt-0">
+                            <div class="flag-thumb">
+                                <img src="{{ asset('assets/img/flag/ger.png') }}" alt="img">
+                            </div>
+                            <div class="flag-content">
+                                <h3><a href="country-details.html">Germany</a></h3>
+                                <p>
+                                    creative agency we believe in the Eid
+                                    and innovation.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+@endsection
