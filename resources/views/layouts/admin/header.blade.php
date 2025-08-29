@@ -11,7 +11,7 @@
         <div class="position-relative">
             <button class="d-flex align-items-center gap-3 text-dark btn">
                 <span class="overflow-hidden rounded-circle h-11 w-11 d-grid place-content-center">
-                    <img src="/backfall-user.png" alt="user" width="40" height="40" />
+                    <img src="{{ asset('assets/img/backfall-user.png') }}" alt="user" width="40" height="40" />
                 </span>
                 <span class="fw-medium">Admin</span>
             </button>

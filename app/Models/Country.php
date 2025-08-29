@@ -11,7 +11,7 @@ class Country extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name','slug','code','flag','description','is_active'
+        'name','slug','short_text' ,'flag','description','is_active'
     ];
 
     public function successStories() {

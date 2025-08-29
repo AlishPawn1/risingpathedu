@@ -16,7 +16,9 @@
               </p>
             </div>
             <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3">
-              <form method="GET" action="{{ route('admin.blogs.index') }}" class="d-flex gap-2">
+              <form method="GET" action="{{ route('admin.blogs.index') }}" class="d-flex flex-column flex-sm-row gap-2">
+                <input type="text" name="search" class="form-control w-auto mb-3 mb-sm-0" placeholder="Search blogs..."
+                  value="{{ request('search') }}">
                 <select class="form-select w-auto mb-3 mb-sm-0" style="min-width: 200px" name="status"
                   onchange="this.form.submit()">
                   <option value="">All Status</option>
@@ -30,6 +32,11 @@
                     <option value="{{ $category }}" {{ request('category') == $category ? 'selected' : '' }}>{{ $category }}
                     </option>
                   @endforeach
+                </select>
+                <select class="form-select w-auto mb-3 mb-sm-0" name="per_page" onchange="this.form.submit()">
+                  <option value="10" {{ request('per_page') == '10' ? 'selected' : '' }}>Show 10</option>
+                  <option value="20" {{ request('per_page') == '20' ? 'selected' : '' }}>Show 20</option>
+                  <option value="50" {{ request('per_page') == '50' ? 'selected' : '' }}>Show 50</option>
                 </select>
               </form>
               <div class="d-flex align-items-center gap-2">
@@ -118,13 +125,11 @@
             <div class="mb-3 mb-sm-0">
               Showing {{ $blogs->firstItem() ?? 0 }} to {{ $blogs->lastItem() ?? 0 }} of {{ $blogs->total() }} blogs
             </div>
-            <nav aria-label="Blog pagination">
-              {{ $blogs->withQueryString()->links() }}
+            <nav>
+              {{ $blogs->links('pagination::bootstrap-4') }}
             </nav>
           </div>
         </div>
       </div>
-    </div>
   </section>
-
 @endsection

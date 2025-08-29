@@ -16,6 +16,16 @@ class BlogController extends Controller
         // Start query with eager loading
         $query = Blog::with(['categories', 'tags']);
 
+        // Filter by search if provided
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('author', 'like', "%{$search}%")
+                    ->orWhere('description', 'like', "%{$search}%");
+            });
+        }
+
         // Filter by status if provided
         if ($request->filled('status')) {
             $query->where('status', $request->status);
@@ -29,7 +39,7 @@ class BlogController extends Controller
         }
 
         // Paginate results (relationships are already eager loaded)
-        $blogs = $query->paginate(10);
+        $blogs = $query->paginate($request->get('per_page', 10));
 
         // Fetch categories for filters or display
         $categories = Category::pluck('name');
@@ -37,7 +47,6 @@ class BlogController extends Controller
         // Return to view
         return view('admin.blogs.index', compact('blogs', 'categories'));
     }
-
 
     public function create()
     {
@@ -59,6 +68,9 @@ class BlogController extends Controller
         ]);
 
         $slug = Str::slug($request->title);
+        if (Blog::where('slug', $slug)->exists()) {
+            $slug .= '-' . time();
+        }
         $imagePath = $request->hasFile('image') ? $request->file('image')->store('blogs', 'public') : null;
 
         $blog = Blog::create([
@@ -131,7 +143,16 @@ class BlogController extends Controller
         ]);
 
         $slug = Str::slug($request->title);
+        if (Blog::where('slug', $slug)->where('id', '!=', $blog->id)->exists()) {
+            $slug .= '-' . time();
+        }
         $imagePath = $request->hasFile('image') ? $request->file('image')->store('blogs', 'public') : $blog->image;
+        if ($request->hasFile('image')) {
+            if ($blog->image && Storage::disk('public')->exists($blog->image)) {
+                Storage::disk('public')->delete($blog->image); 
+            }
+            $data['image'] = $request->file('image')->store('blogs', 'public');
+        }
 
         $blog->update([
             'title' => $request->title,
