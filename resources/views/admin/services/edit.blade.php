@@ -1,13 +1,35 @@
-@extends('layouts.admin')
-@section('title','Edit Service')
+@extends('layouts.admin.app')
+@section('title', 'Edit Service')
+
 @section('content')
-<h1 class="h4 mb-3">Edit Service</h1>
-<form method="POST" action="{{ route('admin.services.update',$service) }}" enctype="multipart/form-data" class="card card-body">
-  @csrf @method('PUT')
-  @include('admin.services._form', ['service' => $service])
-  <div class="mt-3">
-    <button class="btn btn-primary">Update</button>
-    <a href="{{ route('admin.services.index') }}" class="btn btn-secondary">Cancel</a>
-  </div>
-</form>
+    <section class="py-4">
+        <div class="container-fluid">
+            <div class="content-wrap">
+                <!-- Title -->
+                <div class="title-wrap">
+                    <h2 class="h5 mb-1">Edit Service</h2>
+                    <p class="small m-0">Update service details</p>
+                </div>
+
+                <!-- Form -->
+                <div class="form-wrap">
+                    <form method="POST" action="{{ route('admin.services.update', $service) }}" enctype="multipart/form-data"
+                        class="row g-4">
+                        @csrf
+                        @method('PUT')
+                        @include('admin.services._form', ['service' => $service])
+
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-2"></i>Update Service
+                            </button>
+                            <a href="{{ route('admin.services.index') }}" class="btn btn-outline-secondary">
+                                <i class="fas fa-times me-2"></i>Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection
