@@ -44,6 +44,7 @@ class ServiceController extends Controller
                 'description' => 'nullable|string',
                 'image' => 'nullable|image|max:2048',
                 'is_active' => 'required|boolean',
+                'icon' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'faqs' => 'nullable|array',
                 'faqs.*.title' => 'required_with:faqs|string|max:255',
                 'faqs.*.description' => 'nullable|string',
@@ -68,6 +69,16 @@ class ServiceController extends Controller
                     $serviceData['image'] = $image->storeAs('services', $imageName, 'public');
                 } catch (\Exception $e) {
                     return back()->withErrors(['image' => 'Failed to upload image: ' . $e->getMessage()])->withInput();
+                }
+            }
+
+            if ($request->hasFile('icon')) {
+                try {
+                    $icon = $request->file('icon');
+                    $iconName = time() . '_' . Str::random(10) . '.' . $icon->getClientOriginalExtension();
+                    $serviceData['icon'] = $icon->storeAs('services/icons', $iconName, 'public');
+                } catch (\Exception $e) {
+                    return back()->withErrors(['icon' => 'Failed to upload icon: ' . $e->getMessage()])->withInput();
                 }
             }
 
@@ -100,6 +111,7 @@ class ServiceController extends Controller
                 'short_description' => 'required|string|max:255',
                 'description' => 'nullable|string',
                 'image' => 'nullable|image|max:2048',
+                'icon' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'is_active' => 'required|boolean',
                 'faqs' => 'nullable|array',
                 'faqs.*.title' => 'required_with:faqs|string|max:255',
@@ -134,6 +146,22 @@ class ServiceController extends Controller
                     $serviceData['image'] = $image->storeAs('services', $imageName, 'public');
                 } catch (\Exception $e) {
                     return back()->withErrors(['image' => 'Failed to upload image: ' . $e->getMessage()])->withInput();
+                }
+            }
+
+            // Handle icon upload
+            if ($request->hasFile('icon')) {
+                try {
+                    // Delete old icon if exists
+                    if ($service->icon && Storage::disk('public')->exists($service->icon)) {
+                        Storage::disk('public')->delete($service->icon);
+                    }
+
+                    $icon = $request->file('icon');
+                    $iconName = time() . '_' . Str::random(10) . '.' . $icon->getClientOriginalExtension();
+                    $serviceData['icon'] = $icon->storeAs('services/icons', $iconName, 'public');
+                } catch (\Exception $e) {
+                    return back()->withErrors(['icon' => 'Failed to upload icon: ' . $e->getMessage()])->withInput();
                 }
             }
 

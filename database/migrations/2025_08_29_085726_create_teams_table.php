@@ -15,8 +15,10 @@ return new class extends Migration { /** * Run the migrations. */
             $table->string('twitter')->nullable();
             $table->string('instagram')->nullable();
             $table->string('linkedin')->nullable();
-            $table->timestamps(); 
-        }); 
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
+            $table->timestamps();
+        });
     }
 
     public function down(): void

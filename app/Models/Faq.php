@@ -10,10 +10,21 @@ class Faq extends Model
     use HasFactory;
 
     protected $fillable = [
-        'service_id', 'title', 'description',
+        'service_id',
+        'faq_category_id',
+        'title',
+        'description',
+        'meta_title',
+        'meta_description',
     ];
 
-    public function service() {
+    public function service()
+    {
         return $this->belongsTo(Service::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(FaqCategory::class, 'faq_category_id');
     }
 }

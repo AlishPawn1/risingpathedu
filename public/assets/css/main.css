@@ -4491,16 +4491,19 @@ input.main-search-input::placeholder {
   }
 }
 .service-wrapper .service-card-items {
-  margin-top: 30px;
   padding: 30px;
   background-color: var(--bg);
+  height: 100%;
   transition: all 0.4s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
 }
 .service-wrapper .service-card-items h3 {
   margin-bottom: 15px;
 }
 .service-wrapper .service-card-items .service-thumb {
-  margin-top: 20px;
   margin-bottom: 30px;
   position: relative;
   overflow: hidden;
@@ -4519,9 +4522,14 @@ input.main-search-input::placeholder {
   transition-timing-function: ease;
   width: 200%;
 }
+.service-wrapper .service-card-items .service-thumb{
+  height: 260px;
+}
 .service-wrapper .service-card-items .service-thumb img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: top center;
   transition: all 0.4s ease-in-out;
 }
 .service-wrapper .service-card-items:hover {
@@ -4696,7 +4704,7 @@ input.main-search-input::placeholder {
   position: relative;
   transition: all 0.4s ease-in-out;
   display: inline-block;
-  font-size: 60px;
+  /* font-size: 60px; */
   color: var(--theme);
 }
 .service-box-items .icon::before {
@@ -4815,8 +4823,14 @@ input.main-search-input::placeholder {
   background: rgba(255, 255, 255, 0.23);
 }
 .service-box-items.style-2 .icon {
-  font-size: 70px;
   color: var(--theme2);
+}
+.service-box-items.style-2 .icon img{
+  --size: 70px;
+  width: var(--size);
+  height: var(--size);
+  flex: 0 0 var(--size);
+  object-fit: cover;
 }
 .service-box-items.style-2 .content h6 {
   font-weight: bold;
@@ -5250,10 +5264,13 @@ input.main-search-input::placeholder {
 .service-visa-items .service-visa-thumb {
   position: relative;
   overflow: hidden;
+  height: 310px;
 }
 .service-visa-items .service-visa-thumb img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: top center;
   border-radius: 10px 10px 0 0;
   transition: 0.5s;
   background-size: cover;
@@ -6073,8 +6090,10 @@ input.main-search-input::placeholder {
   }
 }
 .countries-card-items .thumb {
-  width: 60px;
-  height: 60px;
+  --size: 60px;
+  width: var(--size);
+  height: var(--size);
+  flex: 0 0 var(--size);
 }
 .countries-card-items .thumb img {
   width: 100%;
@@ -6230,9 +6249,12 @@ input.main-search-input::placeholder {
 }
 .country-details-wrapper .country-details-items .thumb-2 {
   position: relative;
+  height: 275px;
 }
 .country-details-wrapper .country-details-items .thumb-2 img {
   width: 100%;
+  object-fit: cover;
+  object-position: center;
   height: 100%;
 }
 .country-details-wrapper .country-details-items .thumb-2 .video-box {
@@ -6624,6 +6646,7 @@ input.main-search-input::placeholder {
 }
 .single-team-items .team-image {
   position: relative;
+  height: 330px;
 }
 .single-team-items .team-image img {
   width: 100%;
@@ -8606,6 +8629,7 @@ input.main-search-input::placeholder {
 .news-box-items .news-image {
   position: relative;
   overflow: hidden;
+  height: 270px;
 }
 .news-box-items .news-image img {
   width: 100%;
@@ -8613,6 +8637,7 @@ input.main-search-input::placeholder {
   position: relative;
   display: block;
   object-fit: cover;
+  object-position: top center;
   -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
 }
@@ -9031,7 +9056,9 @@ input.main-search-input::placeholder {
 }
 .blog-wrapper .single-blog-post.post-details .post-content .single-post-image {
   width: 100%;
-  height: 100%;
+  height: 500px;
+  object-fit: cover;
+  object-position: top center;
 }
 .blog-wrapper .single-blog-post.post-details .post-content h1 {
   font-size: 36px;
@@ -9172,6 +9199,7 @@ input.main-search-input::placeholder {
   width: 100%;
   position: relative;
   margin-bottom: -2px;
+  background-position: top center;
 }
 .blog-wrapper .single-blog-post .post-featured-thumb .post-date {
   position: absolute;
@@ -9711,6 +9739,13 @@ p.sticky-label {
   overflow: hidden;
   margin-right: 30px;
 }
+.comments-item-list .single-comment-item .author-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
 @media (max-width: 991px) {
   .comments-item-list .single-comment-item .author-img {
     width: 80px;
@@ -11119,4 +11154,12 @@ p.sticky-label {
   .newsletter-area .newsletter-items .theme-btn {
     padding: 18px 25px;
   }
+}
+.pagination .page-item.active .page-link {
+    background-color: var(--theme);
+    border-color: var(--theme);
+    color: #fff;
+}
+.pagination .page-item .page-link {
+    color: #000;
 }

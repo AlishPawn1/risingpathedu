@@ -16,5 +16,7 @@ class Team extends Model
         'twitter',
         'instagram',
         'linkedin',
+        'meta_title',
+        'meta_description',
     ];
 }

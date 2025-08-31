@@ -12,5 +12,7 @@ class Courses extends Model
         'duration',
         'description',
         'image',
+        'meta_title',
+        'meta_description'
     ];
 }

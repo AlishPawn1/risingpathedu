@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;   // ✅ This import was missing
+use App\Models\Service;
+use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\View;
+use App\Models\SiteSetting;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +26,13 @@ class AppServiceProvider extends ServiceProvider
     {
         Blade::if('active', function (string $pattern) {
             return Str::is($pattern, request()->route()?->getName() ?? '');
+        });
+        View::composer('*', function ($view) {
+            $siteSetting = SiteSetting::first();
+            $view->with('siteSetting', $siteSetting);
+
+            $allServices = Service::all();
+            $view->with('allServices', $allServices);
         });
     }
 }

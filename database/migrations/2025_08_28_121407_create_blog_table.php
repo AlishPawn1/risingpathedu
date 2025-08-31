@@ -14,7 +14,10 @@ return new class extends Migration {
             $table->string('author');
             $table->text('description');
             $table->string('image')->nullable();
-            $table->string('status')->default('draft'); // validate in controller
+            $table->unsignedBigInteger('views')->default(0);
+            $table->string('status')->default('draft');
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
             $table->timestamps();
         });
     }

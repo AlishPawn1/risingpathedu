@@ -16,78 +16,19 @@
     <section class="countries-section fix section-padding">
         <div class="container">
             <div class="row g-4">
-                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                    <div class="countries-card-items mt-0">
-                        <div class="thumb">
-                            <img src="{{ asset('assets/img/flag/turkey.png') }}" alt="img">
-                        </div>
-                        <div class="content">
-                            <h3><a href="{{ url('country-details') }}">turkey </a></h3>
-                            <p>Average time to resolve a
-                                cyber.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
-                    <div class="countries-card-items mt-0">
-                        <div class="thumb">
-                            <img src="{{ asset('assets/img/flag/france.png') }}" alt="img">
-                        </div>
-                        <div class="content">
-                            <h3><a href="{{ url('country-details') }}">france </a></h3>
-                            <p>Average time to resolve a
-                                cyber.</p>
+                @foreach ($countries->where('is_active', 1)->take(6) as $country)
+                    <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="{{ 0.3 + (0.2 * $loop->index) }}s">
+                        <div class="countries-card-items">
+                            <div class="thumb">
+                                <img src="{{ asset('storage/' . $country->flag) }}" alt="{{ $country->name }}">
+                            </div>
+                            <div class="content">
+                                <h3><a href="{{ route('countries.show', $country->slug) }}">{{ $country->name }}</a></h3>
+                                <p>{{ Str::limit($country->short_text, 50) }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".7s">
-                    <div class="countries-card-items mt-0">
-                        <div class="thumb">
-                            <img src="{{ asset('assets/img/flag/aus.jpg') }}" alt="img">
-                        </div>
-                        <div class="content">
-                            <h3><a href="{{ url('country-details') }}">Australia </a></h3>
-                            <p>Average time to resolve a
-                                cyber.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                    <div class="countries-card-items mt-0">
-                        <div class="thumb">
-                            <img src="{{ asset('assets/img/flag/us.png') }}" alt="img">
-                        </div>
-                        <div class="content">
-                            <h3><a href="{{ url('country-details') }}">United States </a></h3>
-                            <p>Average time to resolve a
-                                cyber.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
-                    <div class="countries-card-items mt-0">
-                        <div class="thumb">
-                            <img src="{{ asset('assets/img/flag/india.png') }}" alt="img">
-                        </div>
-                        <div class="content">
-                            <h3><a href="{{ url('country-details') }}">India</a></h3>
-                            <p>Average time to resolve a
-                                cyber.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".7s">
-                    <div class="countries-card-items mt-0">
-                        <div class="thumb">
-                            <img src="{{ asset('assets/img/flag/dubai.png') }}" alt="img">
-                        </div>
-                        <div class="content">
-                            <h3><a href="{{ url('country-details') }}">Dubai</a></h3>
-                            <p>Average time to resolve a
-                                cyber.</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -147,62 +88,19 @@
         style="background-image: url('{{ asset('assets/img/flag/lines-waves1.png') }}');">
         <div class="container">
             <div class="row g-4">
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                    <div class="country-box-items mt-0">
-                        <div class="flag-thumb">
-                            <img src="{{ asset('assets/img/flag/eng.png') }}" alt="img">
-                        </div>
-                        <div class="flag-content">
-                            <h3><a href="{{ url('country-details') }}">England</a></h3>
-                            <p>
-                                creative agency we believe in the Eid
-                                and innovation.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-                    <div class="country-box-items mt-0">
-                        <div class="flag-thumb">
-                            <img src="{{ asset('assets/img/flag/russ.png') }}" alt="img">
-                        </div>
-                        <div class="flag-content">
-                            <h3><a href="{{ url('country-details') }}">Russia</a></h3>
-                            <p>
-                                creative agency we believe in the Eid
-                                and innovation.
-                            </p>
+                @foreach ($countries->where('is_active', 1)->skip(6)->take(4) as $country)
+                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="{{ 0.3 + (0.2 * $loop->index) }}s">
+                        <div class="country-box-items mt-0">
+                            <div class="flag-thumb">
+                                <img src="{{ asset('storage/' . $country->flag) }}" alt="{{ $country->name }}">
+                            </div>
+                            <div class="flag-content">
+                                <h3><a href="{{ route('countries.show', $country->slug) }}">{{ $country->name }}</a></h3>
+                                <p>{{ Str::limit($country->short_text, 50) }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
-                    <div class="country-box-items mt-0">
-                        <div class="flag-thumb">
-                            <img src="{{ asset('assets/img/flag/bra.png') }}" alt="img">
-                        </div>
-                        <div class="flag-content">
-                            <h3><a href="{{ url('country-details') }}">Brazil</a></h3>
-                            <p>
-                                creative agency we believe in the Eid
-                                and innovation.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".8s">
-                    <div class="country-box-items mt-0">
-                        <div class="flag-thumb">
-                            <img src="{{ asset('assets/img/flag/ger.png') }}" alt="img">
-                        </div>
-                        <div class="flag-content">
-                            <h3><a href="{{ url('country-details') }}">Germany</a></h3>
-                            <p>
-                                creative agency we believe in the Eid
-                                and innovation.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -262,62 +160,19 @@
         <div class="container">
             <div class="swiper flag-slider">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="country-box-items style-2 mt-0">
-                            <div class="flag-thumb">
-                                <img src="{{ asset('assets/img/flag/eng.png') }}" alt="img">
-                            </div>
-                            <div class="flag-content">
-                                <h3><a href="{{ url('country-details') }}">England</a></h3>
-                                <p>
-                                    creative agency we believe in the Eid
-                                    and innovation.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="country-box-items style-2 mt-0">
-                            <div class="flag-thumb">
-                                <img src="{{ asset('assets/img/flag/russ.png') }}" alt="img">
-                            </div>
-                            <div class="flag-content">
-                                <h3><a href="{{ url('country-details') }}">Russia</a></h3>
-                                <p>
-                                    creative agency we believe in the Eid
-                                    and innovation.
-                                </p>
+                    @foreach ($countries->where('is_active', 1) as $country)
+                        <div class="swiper-slide">
+                            <div class="country-box-items style-2 mt-0">
+                                <div class="flag-thumb">
+                                    <img src="{{ asset('storage/' . $country->flag) }}" alt="{{ $country->name }}">
+                                </div>
+                                <div class="flag-content">
+                                    <h3><a href="{{ route('countries.show', $country->slug) }}">{{ $country->name }}</a></h3>
+                                    <p>{{ Str::limit($country->short_text, 50) }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="country-box-items style-2 mt-0">
-                            <div class="flag-thumb">
-                                <img src="{{ asset('assets/img/flag/bra.png') }}" alt="img">
-                            </div>
-                            <div class="flag-content">
-                                <h3><a href="{{ url('country-details') }}">Brazil</a></h3>
-                                <p>
-                                    creative agency we believe in the Eid
-                                    and innovation.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="country-box-items style-2 mt-0">
-                            <div class="flag-thumb">
-                                <img src="{{ asset('assets/img/flag/ger.png') }}" alt="img">
-                            </div>
-                            <div class="flag-content">
-                                <h3><a href="country-details.html">Germany</a></h3>
-                                <p>
-                                    creative agency we believe in the Eid
-                                    and innovation.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

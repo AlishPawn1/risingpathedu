@@ -16,7 +16,10 @@ class Service extends Model
         'short_description',
         'description',
         'image',
+        'icon',
         'is_active',
+        'meta_title',
+        'meta_description'
     ];
 
     public function faqs()

@@ -16,174 +16,39 @@
     <section class="team-section section-padding">
         <div class="container">
             <div class="row g-4">
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                    <div class="single-team-items mt-0">
-                        <div class="team-image">
-                            <img src="{{ asset('assets/img/team/01.jpg') }}" alt="team-img">
-                            <div class="social-profile">
-                                <span class="plus-btn"><i class="fas fa-share-alt"></i></span>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
+                @foreach($teams as $index => $team)
+                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="{{ 0.2 + (0.2 * $index) }}s">
+                        <div class="single-team-items mt-0">
+                            <div class="team-image">
+                                <img src="{{ $team->image ? asset('storage/' . $team->image) : asset('assets/img/team/01.jpg') }}"
+                                    alt="{{ $team->name }}">
+                                <div class="social-profile">
+                                    <span class="plus-btn"><i class="fas fa-share-alt"></i></span>
+                                    <ul>
+                                        @if($team->facebook)
+                                            <li><a href="{{ $team->facebook }}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                        @endif
+                                        @if($team->twitter)
+                                            <li><a href="{{ $team->twitter }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                        @endif
+                                        @if($team->instagram)
+                                            <li><a href="{{ $team->instagram }}" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                        @endif
+                                        @if($team->linkedin)
+                                            <li><a href="{{ $team->linkedin }}" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                                        @endif
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="team-content text-center box-shadow">
+                                <h5>
+                                    <a href="{{ route('teams.show', $team->slug) }}">{{ $team->name }}</a>
+                                </h5>
+                                <p>{{ $team->designation ?? $team->post }}</p>
                             </div>
                         </div>
-                        <div class="team-content text-center box-shadow">
-                            <h5>
-                                <a href="{{ url('team-details') }}">Salman Ahmed</a>
-                            </h5>
-                            <p>CEO & Founder</p>
-                        </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-                    <div class="single-team-items mt-0">
-                        <div class="team-image">
-                            <img src="{{ asset('assets/img/team/02.jpg') }}" alt="team-img">
-                            <div class="social-profile">
-                                <span class="plus-btn"><i class="fas fa-share-alt"></i></span>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="team-content text-center box-shadow">
-                            <h5>
-                                <a href="{{ url('team-details') }}">Sonsil Macron</a>
-                            </h5>
-                            <p>CEO & Founder</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
-                    <div class="single-team-items mt-0">
-                        <div class="team-image">
-                            <img src="{{ asset('assets/img/team/03.jpg') }}" alt="team-img">
-                            <div class="social-profile">
-                                <span class="plus-btn"><i class="fas fa-share-alt"></i></span>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="team-content text-center box-shadow">
-                            <h5>
-                                <a href="{{ url('team-details') }}">Kawser Ahmed</a>
-                            </h5>
-                            <p>CEO & Founder</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".8s">
-                    <div class="single-team-items mt-0">
-                        <div class="team-image">
-                            <img src="{{ asset('assets/img/team/04.jpg') }}" alt="team-img">
-                            <div class="social-profile">
-                                <span class="plus-btn"><i class="fas fa-share-alt"></i></span>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="team-content text-center box-shadow">
-                            <h5>
-                                <a href="{{ url('team-details') }}">Sara Albert</a>
-                            </h5>
-                            <p>Consultant</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                    <div class="single-team-items mt-0">
-                        <div class="team-image">
-                            <img src="assets/img/team/04.jpg" alt="team-img">
-                            <div class="social-profile">
-                                <span class="plus-btn"><i class="fas fa-share-alt"></i></span>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="team-content text-center box-shadow">
-                            <h5>
-                                <a href="team-details.html">Sara Albert</a>
-                            </h5>
-                            <p>Consultant</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-                    <div class="single-team-items mt-0">
-                        <div class="team-image">
-                            <img src="assets/img/team/03.jpg" alt="team-img">
-                            <div class="social-profile">
-                                <span class="plus-btn"><i class="fas fa-share-alt"></i></span>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="team-content text-center box-shadow">
-                            <h5>
-                                <a href="team-details.html">Kawser Ahmed</a>
-                            </h5>
-                            <p>CEO & Founder</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
-                    <div class="single-team-items mt-0">
-                        <div class="team-image">
-                            <img src="assets/img/team/02.jpg" alt="team-img">
-                            <div class="social-profile">
-                                <span class="plus-btn"><i class="fas fa-share-alt"></i></span>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="team-content text-center box-shadow">
-                            <h5>
-                                <a href="team-details.html">Sonsil Macron</a>
-                            </h5>
-                            <p>CEO & Founder</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".8s">
-                    <div class="single-team-items mt-0">
-                        <div class="team-image">
-                            <img src="assets/img/team/01.jpg" alt="team-img">
-                            <div class="social-profile">
-                                <span class="plus-btn"><i class="fas fa-share-alt"></i></span>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="team-content text-center box-shadow">
-                            <h5>
-                                <a href="team-details.html">Salman Ahmed</a>
-                            </h5>
-                            <p>CEO & Founder</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

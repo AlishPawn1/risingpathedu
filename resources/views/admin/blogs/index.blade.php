@@ -59,6 +59,7 @@
                   <th scope="col">Categories</th>
                   <th scope="col">Tags</th>
                   <th scope="col">Date</th>
+                  <th scope="col">View</th>
                   <th scope="col">Status</th>
                   <th scope="col">Actions</th>
                 </tr>
@@ -89,6 +90,7 @@
                       @endforeach
                     </td>
                     <td>{{ $blog->created_at->format('M d, Y') }}</td>
+                    <td>{{ $blog->views }}</td>
                     <td>
                       <span class="badge bg-{{ $blog->status == 'published' ? 'success' : 'warning' }}">
                         {{ ucfirst($blog->status) }}

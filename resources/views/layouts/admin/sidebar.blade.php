@@ -13,6 +13,9 @@
             <li><a href="{{ url('admin/courses') }}" class="menu-item">Courses</a></li>
             <li><a href="{{ url('admin/countries') }}" class="menu-item">Countries</a></li>
             <li><a href="{{ url('admin/services') }}" class="menu-item">Service</a></li>
+            <li><a href="{{ url('admin/faq-category') }}" class="menu-item">FAQ category</a></li>
+            <li><a href="{{ url('admin/faqs') }}" class="menu-item">FAQs</a></li>
+            <li><a href="{{ url('admin/site-settings') }}" class="menu-item">Site Settings</a></li>
         </ul>
     </nav>
 </aside>

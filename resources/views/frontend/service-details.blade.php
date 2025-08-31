@@ -4,11 +4,11 @@
 
     <!--<< Breadcrumb Section Start >>-->
     @component('components.breadcrumb', [
-        'title' => 'Visa Details',
+        'title' => $service->title,
         'layers' => [
             ['label' => 'Home Page', 'url' => url('/')],
             ['label' => 'Service', 'url' => url('/services')],
-            ['label' => 'Visa Details'],
+            ['label' => $service->title],
         ]
     ])
     @endcomponent
@@ -22,25 +22,21 @@
                         <div class="visa-sidebar">
                             <div class="visa-widget-categories">
                                 <ul>
-                                    <li><a href="{{ url('service-details') }}">Student Visa<span><i
-                                                    class="fas fa-chevron-right"></i></span></a></li>
-                                    <li><a href="{{ url('service-details') }}">Family Visa<span><i
-                                                    class="fas fa-chevron-right"></i></span></a></li>
-                                    <li><a href="{{ url('service-details') }}">Tourist Visa<span><i
-                                                    class="fas fa-chevron-right"></i></span></a></li>
-                                    <li><a href="{{ url('service-details') }}">Business Visa<span><i
-                                                    class="fas fa-chevron-right"></i></span></a></li>
-                                    <li><a href="{{ url('service-details') }}">Worker Visa<span><i
-                                                    class="fas fa-chevron-right"></i></span></a></li>
-                                    <li><a href="{{ url('service-details') }}">Diplomatic Visa<span><i
-                                                    class="fas fa-chevron-right"></i></span></a></li>
+                                    @foreach($relatedServices as $related)
+                                        <li>
+                                            <a href="{{ route('service.show', $related->slug) }}">
+                                                {{ $related->title }}
+                                                <span><i class="fas fa-chevron-right"></i></span>
+                                            </a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                             <div class="visa-sidebar-widget">
                                 <div class="contact-bg text-center bg-cover"
-                                    style="background-image: url('{{ asset('assets/img/service/contact-bg.jpg') }}');">
+                                     style="background-image: url('{{ asset('assets/img/service/contact-bg.jpg') }}');">
                                     <h4>Do You Have any <br> question?</h4>
-                                    <h3><a href="tel:808555-0111">(808) 555-0111</a></h3>
+                                    <h3><a href="tel:{{ $siteSetting->contact_number ?? '808555-0111' }}">{{ $siteSetting->contact_number ?? '(808) 555-0111' }}</a></h3>
                                     <p>It is a long established fact that a reader will be distracted by the rea</p>
                                     <a href="{{ url('contact') }}" class="theme-btn bg-white">
                                         <span>
@@ -50,188 +46,45 @@
                                     </a>
                                 </div>
                             </div>
-                            <a href="{{ url('service-details') }}" class="theme-btn w-100 text-center">
-                                <span><i class="fas fa-file-pdf me-3"></i> download pdf file</span>
-                            </a>
                         </div>
                     </div>
                     <div class="col-lg-8 order-1 order-md-2">
                         <div class="service-details-items">
-                            <div class="details-image">
-                                <img src="{{ asset('assets/img/service/details-1.jpg') }}" alt="img">
-                            </div>
+                            @if ($service->image)
+                                <div class="details-image">
+                                    <img src="{{ asset('storage/' . $service->image) }}">
+                                </div>
+                            @endif
                             <div class="details-content">
-                                <h2 class="title-anim">Visa Overview</h2>
-                                <p class="mt-3">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat qui ducimus illum
-                                    modi? perspiciatis
-                                    accusamus soluta perferendis, ad illum, nesciunt, reiciendis iusto et cupidit
-                                    Repudiandae provident to
-                                    consectetur, sapiente, libero iure necessitatibus corporis nulla voluptate, quisquam aut
-                                    perspiciatis?
-                                    Fugiat labore aspernatur eius, perspiciatis ut molestiae, delectus rem.Lorem ipsum dolor
-                                    sit amet, consectetur adipisicing elit. Placeat qui ducimus illum modi? perspiciatis
-                                    accusamus soluta perferendis, ad illum, nesciunt, reiciendis iusto et cupidit
-                                    Repudiandae provident to
-                                    consectetur, sapiente, libero iure necessitatibus corporis nulla voluptate, quisquam aut
-                                    perspiciatis?
-                                    Fugiat labore aspernatur eius, perspiciatis ut molestiae, delectus rem.
-                                </p>
-                                <p class="mt-3">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat qui ducimus illum
-                                    modi? perspiciatis
-                                    accusamus soluta perferendis, ad illum, nesciunt, reiciendis iusto et cupidit
-                                    Repudiandae provident to
-                                    consectetur, sapiente, libero iure necessitatibus corporis nulla voluptate, quisquam aut
-                                    perspiciatis?
-                                    Fugiat labore aspernatur eius, perspiciatis ut molestiae, delectus rem.Lorem ipsum dolor
-                                    sit amet, consectetur adipisicing elit. Placeat qui ducimus illum modi.
-                                </p>
-                                <h3 class="mt-5">Visa Center</h3>
-                                <p class="mt-3">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat qui ducimus illum modi
-                                    perspiciatis
-                                    accusamus soluta perferendis delectus rem.Lorem ipsum dolor sit amet delectus rem.Lorem
-                                    ipsum dolor sit amet.
-                                </p>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="single-icon-items">
-                                            <div class="icon-box">
-                                                <div class="icon">
-                                                    <i class="fas fa-check-circle"></i>
-                                                </div>
-                                                <h6>Entering & Leaving From Country</h6>
-                                            </div>
-                                            <div class="icon-box">
-                                                <div class="icon">
-                                                    <i class="fas fa-check-circle"></i>
-                                                </div>
-                                                <h6>Settling In Country</h6>
-                                            </div>
-                                            <div class="icon-box">
-                                                <div class="icon">
-                                                    <i class="fas fa-check-circle"></i>
-                                                </div>
-                                                <h6>Documents & Payments</h6>
+                                <p>{{ $service->short_description }}</p>
+                                <div>{!! $service->description !!}</div>
+
+                                @if(isset($faqs) && count($faqs))
+                                    <div class="faq-content">
+                                        <div class="faq-accordion">
+                                            <div class="accordion" id="accordion-dynamic">
+                                                @foreach($faqs as $index => $faq)
+                                                    <div class="accordion-item wow fadeInUp" data-wow-delay=".{{ $index + 1 }}s">
+                                                        <h4 class="accordion-header">
+                                                            <button class="accordion-button {{ $index ? 'collapsed' : '' }}" type="button"
+                                                                    data-bs-toggle="collapse" data-bs-target="#faq-{{ $index }}"
+                                                                    aria-expanded="{{ $index ? 'false' : 'true' }}"
+                                                                    aria-controls="faq-{{ $index }}">
+                                                                {{ $faq->title }}
+                                                            </button>
+                                                        </h4>
+                                                        <div id="faq-{{ $index }}" class="accordion-collapse collapse{{ $index ? '' : ' show' }}"
+                                                             data-bs-parent="#accordion-dynamic">
+                                                            <div class="accordion-body">
+                                                                {!! $faq->description !!}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="single-icon-items">
-                                            <div class="icon-box">
-                                                <div class="icon">
-                                                    <i class="fas fa-check-circle"></i>
-                                                </div>
-                                                <h6>Receive Your Visa</h6>
-                                            </div>
-                                            <div class="icon-box">
-                                                <div class="icon">
-                                                    <i class="fas fa-check-circle"></i>
-                                                </div>
-                                                <h6>Quick & Easy Process</h6>
-                                            </div>
-                                            <div class="icon-box">
-                                                <div class="icon">
-                                                    <i class="fas fa-check-circle"></i>
-                                                </div>
-                                                <h6>Country Citizenship</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <h3 class="mt-5">Frequently Asked Question</h3>
-                                <p class="mt-3">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat qui ducimus illum modi
-                                    perspiciatis
-                                    accusamus soluta perferendis delectus rem.Lorem ipsum dolor sit amet delectus rem.Lorem
-                                    ipsum dolor sit amet.
-                                </p>
-                                <div class="faq-content">
-                                    <div class="faq-accordion">
-                                        <div class="accordion" id="accordion">
-                                            <div class="accordion-item wow fadeInUp" data-wow-delay=".3s">
-                                                <h4 class="accordion-header">
-                                                    <button class="accordion-button collapsed" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#faq1"
-                                                        aria-expanded="false" aria-controls="faq1">
-                                                        Is my technology allowed on tech?
-                                                    </button>
-                                                </h4>
-                                                <div id="faq1" class="accordion-collapse collapse"
-                                                    data-bs-parent="#accordion">
-                                                    <div class="accordion-body">
-                                                        Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                        commodo consequat.
-                                                        Duis aute irure dolor in reprehenderit in voluptate velit.Quis
-                                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                                        consequat.
-                                                        Duis aute irure dolor in reprehenderit in voluptate velit.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="accordion-item wow fadeInUp" data-wow-delay=".5s">
-                                                <h4 class="accordion-header">
-                                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                        data-bs-target="#faq2" aria-expanded="true" aria-controls="faq2">
-                                                        How to turn visitors into contributors
-                                                    </button>
-                                                </h4>
-                                                <div id="faq2" class="accordion-collapse collapse show"
-                                                    data-bs-parent="#accordion">
-                                                    <div class="accordion-body">
-                                                        Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                        commodo consequat.
-                                                        Duis aute irure dolor in reprehenderit in voluptate velit.Quis
-                                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                                        consequat.
-                                                        Duis aute irure dolor in reprehenderit in voluptate velit.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="accordion-item wow fadeInUp" data-wow-delay=".7s">
-                                                <h4 class="accordion-header">
-                                                    <button class="accordion-button collapsed" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#faq3"
-                                                        aria-expanded="false" aria-controls="faq3">
-                                                        How to soft launch your business?
-                                                    </button>
-                                                </h4>
-                                                <div id="faq3" class="accordion-collapse collapse"
-                                                    data-bs-parent="#accordion">
-                                                    <div class="accordion-body">
-                                                        Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                        commodo consequat.
-                                                        Duis aute irure dolor in reprehenderit in voluptate velit.Quis
-                                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                                        consequat.
-                                                        Duis aute irure dolor in reprehenderit in voluptate velit.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="accordion-item wow fadeInUp" data-wow-delay=".9s">
-                                                <h4 class="accordion-header">
-                                                    <button class="accordion-button collapsed" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#faq4"
-                                                        aria-expanded="false" aria-controls="faq4">
-                                                        How much time needed for visa renewal?
-                                                    </button>
-                                                </h4>
-                                                <div id="faq4" class="accordion-collapse collapse"
-                                                    data-bs-parent="#accordion">
-                                                    <div class="accordion-body">
-                                                        Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                        commodo consequat.
-                                                        Duis aute irure dolor in reprehenderit in voluptate velit.Quis
-                                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                                        consequat.
-                                                        Duis aute irure dolor in reprehenderit in voluptate velit.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>

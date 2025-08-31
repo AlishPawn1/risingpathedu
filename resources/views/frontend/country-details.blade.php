@@ -4,11 +4,11 @@
 
     <!--<< Breadcrumb Section Start >>-->
     @component('components.breadcrumb', [
-        'title' => 'Country Details',
+        'title' => $country->name,
         'layers' => [
             ['label' => 'Home Page', 'url' => url('/')],
-            ['label' => 'Country', 'url' => url('/country')],
-            ['label' => 'Country Details'],
+            ['label' => 'Country', 'url' => url('/countries')],
+            ['label' => $country->name],
         ]
     ])
     @endcomponent
@@ -20,103 +20,50 @@
                     <div class="col-lg-8">
                         <div class="country-details-items">
                             <div class="country-content">
-                                <h2 class="title-anim">Study. Work. Live in England</h2>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat qui ducimus illum
-                                    modi? perspiciatis
-                                    accusamus soluta perferendis, ad illum, nesciunt, reiciendis iusto et cupidit
-                                    Repudiandae provident to
-                                    consectetur, sapiente, libero iure necessitatibus corporis nulla voluptate, quisquam aut
-                                    perspiciatis?
-                                    Fugiat labore aspernatur eius, perspiciatis ut molestiae, delectus rem.
-                                </p>
+                                <h2 class="title-anim">Study. Work. Live in {{ $country->name }}</h2>
+                                <p>{{ $country->short_text }}</p>
                             </div>
                             <div class="details-image">
-                                <img src="assets/img/country/details-1.jpg" alt="img">
+                                <img src="{{ asset('storage/' . $country->image) }}" alt="{{ $country->name }}">
                             </div>
-                            <p class="mb-3">
-                                Need something changed or is there something not quite working the way you envisaged? Is
-                                your van a
-                                little old and tired and need refreshing? Lorem Ipsum is simply dummy text of the printing
-                                and typesetting
-                                industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when
-                                an
-                                unknown printer took a galley of type and scrambled it to make a type specimen book. It has
-                                survived not
-                                only five centuries, but also the leap into electronic typesetting, remaining essentially
-                                unchanged. dummy text ever since the 1500s, when an
-                                unknown printer took a galley of type and scrambled it to make a type specimen book. It has
-                                survived not
-                                only five centuries, but also the leap into electronic typesetting, remaining essentially
-                                unchanged.
-                            </p>
-                            <p>
-                                Need something changed or is there something not quite working the way you envisaged? Is
-                                your van a
-                                little old and tired and need refreshing? Lorem Ipsum is simply dummy text of the printing
-                                and typesetting
-                                industry. Lorem Ipsum has been the industry’s standard
-                            </p>
-                            <div class="row g-4 mt-4 align-items-center">
-                                <div class="col-lg-6">
-                                    <div class="thumb-2">
-                                        <img src="assets/img/country/details-2.jpg" alt="img">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="content">
-                                        <h3>Why Study In Australia?</h3>
-                                        <p>
-                                            Need something changed or is there something not quite working the way you
-                                            envisaged? Is your van a
-                                            little old and tired and need refreshing? Lorem Ipsum is simply dummy text of
-                                            the printing and typesetting
-                                            industry. tired and need refreshing? Lorem Ipsum is simply dummy text of the
-                                            printing and typesetting
-                                            industry.
-                                        </p>
-                                    </div>
-                                </div>
+                            <div>
+                                {!! $country->description !!}
                             </div>
                             <div class="row g-4 mt-5 align-items-center">
-                                <div class="col-lg-6">
-                                    <div class="content">
-                                        <h3>Institutes:</h3>
-                                        <ul>
-                                            <li>
-                                                <i class="fas fa-check-circle"></i>
-                                                Einstein College of England
-                                            </li>
-                                            <li>
-                                                <i class="fas fa-check-circle"></i>
-                                                Cambridge College nternational
-                                            </li>
-                                            <li>
-                                                <i class="fas fa-check-circle"></i>
-                                                Adelaide College Of Technology
-                                            </li>
-                                            <li>
-                                                <i class="fas fa-check-circle"></i>
-                                                Brisbane College of England
-                                            </li>
-                                            <li>
-                                                <i class="fas fa-check-circle"></i>
-                                                Central Queensland University
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="thumb-2">
-                                        <img src="assets/img/country/details-3.jpg" alt="img">
-                                        <div class="video-box">
-                                            <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I"
-                                                class="video-btn ripple video-popup">
-                                                <i class="fas fa-play"></i>
-                                            </a>
+                                @if(!empty($country->institutes))
+                                    <div class="col-lg-6">
+                                        <div class="content">
+                                            <h3>Institutes:</h3>
+                                            <ul>
+                                                @foreach(explode("\n", $country->institutes) as $institute)
+                                                    @if(trim($institute) != '')
+                                                        <li>
+                                                            <i class="fas fa-check-circle"></i>
+                                                            {{ $institute }}
+                                                        </li>
+                                                    @endif
+                                                @endforeach
+                                            </ul>
                                         </div>
                                     </div>
-                                </div>
+                                @endif
+
+                                @if(!empty($country->media_type) && !empty($country->media_url))
+                                    <div class="col-lg-6">
+                                        <div class="thumb-2">
+                                            @if($country->media_type === 'image')
+                                                <img src="{{ asset('storage/' . $country->media_url) }}" alt="img">
+                                            @elseif($country->media_type === 'video')
+                                                <img src="{{ asset('storage/' . $country->image) }}" alt="Video Thumbnail" class="img-thumbnail mb-2">
+                                                <div class="video-box">
+                                                    <a href="{{ $country->media_url }}" class="video-btn ripple video-popup">
+                                                        <i class="fas fa-play"></i>
+                                                    </a>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -143,13 +90,13 @@
                             </div>
                             <div class="country-sidebar-widget">
                                 <div class="contact-bg bg-cover"
-                                    style="background-image: url('assets/img/service/contact-bg.jpg');">
+                                    style="background-image: url('{{ asset('assets/img/service/contact-bg.jpg') }}');">
                                     <h3>Dream Tour</h3>
                                     <h2>
                                         Explore <br>
                                         The World
                                     </h2>
-                                    <a href="contact.html" class="theme-btn bg-white">
+                                    <a href="/contact" class="theme-btn bg-white">
                                         <span>
                                             contact us
                                             <i class="fas fa-chevron-right"></i>
@@ -157,9 +104,6 @@
                                     </a>
                                 </div>
                             </div>
-                            <a href="service-details.html" class="theme-btn w-100 text-center">
-                                <span><i class="fas fa-file-pdf me-3"></i> download pdf file</span>
-                            </a>
                         </div>
                     </div>
                 </div>

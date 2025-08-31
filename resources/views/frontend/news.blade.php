@@ -19,115 +19,41 @@
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         <div class="blog-posts">
-                            <div class="single-blog-post">
-                                <div class="post-featured-thumb bg-cover"
-                                    style="background-image: url('{{ asset('assets/img/news/post-1.jpg') }}');">
-
-                                </div>
-                                <div class="post-content">
-                                    <div class="post-meta">
-                                        <span><i class="fal fa-comments"></i>35 Comments</span>
-                                        <span><i class="fal fa-calendar-alt"></i>24th March 2024</span>
-                                    </div>
-                                    <h2 class="title-anim">
-                                        <a href="{{ url('news-details') }}">
-                                            How to Ensure Direct for The Hassle-Free Visa Process
-                                        </a>
-                                    </h2>
-                                    <p>
-                                        There are many variations of passages of Lorem Ipsum available, but majority have
-                                        suffered
-                                        teration in some form, by injected humour, or randomised words which don't look even
-                                        slight
-                                        believable. If you are going to use a passage of Lorem Ipsum.
-                                    </p>
-                                    <a href="{{ url('news-details') }}" class="theme-btn mt-4 line-height">
-                                        <span>READ MORE <i class="fas fa-chevron-right"></i></span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="single-blog-post">
-                                <div class="post-featured-thumb bg-cover"
-                                    style="background-image: url('{{ asset('assets/img/news/post-2.jpg') }}');">
-
-                                </div>
-                                <div class="post-content">
-                                    <div class="post-meta">
-                                        <span><i class="fal fa-comments"></i>35 Comments</span>
-                                        <span><i class="fal fa-calendar-alt"></i>24th March 2024</span>
-                                    </div>
-                                    <h2 class="title-anim">
-                                        <a href="{{ url('news-details') }}">
-                                            When an Unknown Printer Took a Galley of Type
-                                        </a>
-                                    </h2>
-                                    <p>
-                                        There are many variations of passages of Lorem Ipsum available, but majority have
-                                        suffered
-                                        teration in some form, by injected humour, or randomised words which don't look even
-                                        slight
-                                        believable. If you are going to use a passage of Lorem Ipsum.
-                                    </p>
-                                    <a href="{{ url('news-details') }}" class="theme-btn mt-4 line-height">
-                                        <span>READ MORE <i class="fas fa-chevron-right"></i></span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="single-blog-post">
-                                <div class="post-featured-thumb bg-cover"
-                                    style="background-image: url('{{ asset('assets/img/news/post-3.jpg') }}');">
-
-                                </div>
-                                <div class="post-content">
-                                    <div class="post-meta">
-                                        <span><i class="fal fa-comments"></i>35 Comments</span>
-                                        <span><i class="fal fa-calendar-alt"></i>24th March 2024</span>
-                                    </div>
-                                    <h2 class="title-anim">
-                                        <a href="{{ url('news-details') }}">
-                                            It Has Survived not Only Five Centuries, but Also
-                                        </a>
-                                    </h2>
-                                    <p>
-                                        There are many variations of passages of Lorem Ipsum available, but majority have
-                                        suffered
-                                        teration in some form, by injected humour, or randomised words which don't look even
-                                        slight
-                                        believable. If you are going to use a passage of Lorem Ipsum.
-                                    </p>
-                                    <a href="{{ url('news-details') }}" class="theme-btn mt-4 line-height">
-                                        <span>READ MORE <i class="fas fa-chevron-right"></i></span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="single-blog-post quote-post format-quote">
-                                <div class="post-content text-white bg-cover">
-                                    <div class="quote-content">
-                                        <div class="icon">
-                                            <i class="fas fa-quote-left"></i>
+                            @if($blogs->count())
+                                @foreach($blogs as $blog)
+                                    <div class="single-blog-post">
+                                        <div class="post-featured-thumb bg-cover"
+                                            style="background-image: url('{{ asset('storage/' . $blog->image) }}');">
                                         </div>
-                                        <div class="quote-text">
-                                            <h2 class="title-anim">Excepteur sint occaecat cupida tat non proident, sunt in.
-                                            </h2>
+                                        <div class="post-content">
                                             <div class="post-meta">
-                                                <span><i class="fal fa-comments"></i>35 Comments</span>
-                                                <span><i class="fal fa-calendar-alt"></i>24th March 2024</span>
+                                                <span><i class="fal fa-comments"></i>{{ $blog->comments->count() ?? 0 }}
+                                                    Comments</span>
+                                                <span><i
+                                                        class="fal fa-calendar-alt"></i>{{ \Carbon\Carbon::parse($blog->created_at)->format('d M Y') }}</span>
                                             </div>
+                                            <h2 class="title-anim">
+                                                <a href="{{ url('news', $blog->slug) }}">
+                                                    {{ $blog->title }}
+                                                </a>
+                                            </h2>
+                                            <p>
+                                                {{ Str::limit(strip_tags($blog->description), 150) }}
+                                            </p>
+                                            <a href="{{ url('news', $blog->slug) }}" class="theme-btn mt-4 line-height">
+                                                <span>READ MORE <i class="fas fa-chevron-right"></i></span>
+                                            </a>
                                         </div>
                                     </div>
+                                @endforeach
+                            @else
+                                <div class="alert alert-warning text-center">
+                                    No blogs found.
                                 </div>
-                            </div>
+                            @endif
                         </div>
                         <div class="page-nav-wrap mt-5 text-center">
-                            <ul>
-                                <li><a class="page-numbers" href="#"><i class="fal fa-long-arrow-left"></i></a></li>
-                                <li><a class="page-numbers" href="#">01</a></li>
-                                <li><a class="page-numbers" href="#">02</a></li>
-                                <li><a class="page-numbers" href="#">..</a></li>
-                                <li><a class="page-numbers" href="#">10</a></li>
-                                <li><a class="page-numbers" href="#">11</a></li>
-                                <li><a class="page-numbers" href="#"><i class="fal fa-long-arrow-right"></i></a></li>
-                            </ul>
+                            {{ $blogs->links('vendor.pagination.custom') }}
                         </div>
                     </div>
                     <div class="col-12 col-lg-4">
@@ -137,8 +63,8 @@
                                     <h3>Search</h3>
                                 </div>
                                 <div class="search_widget">
-                                    <form action="#">
-                                        <input type="text" placeholder="Keywords here....">
+                                    <form action="{{ url('news') }}" method="GET">
+                                        <input type="text" name="keywords" placeholder="Keywords here....">
                                         <button type="submit"><i class="fal fa-search"></i></button>
                                     </form>
                                 </div>
@@ -148,40 +74,27 @@
                                     <h3>Popular Feeds</h3>
                                 </div>
                                 <div class="popular-posts">
-                                    <div class="single-post-item">
-                                        <div class="thumb bg-cover"
-                                            style="background-image: url('{{ asset('assets/img/news/pp1.jpg') }}');"></div>
-                                        <div class="post-content">
-                                            <h5><a href="{{ url('news-details') }}">
-                                                    Visa Application Fee Increases From July 2024</a></h5>
-                                            <div class="post-date">
-                                                <i class="far fa-calendar-alt"></i>24th March 2024
+                                    @foreach($popularBlogs as $blog)
+                                        <div class="single-post-item">
+                                            <div class="thumb bg-cover"
+                                                style="background-image: url('{{ asset('storage/' . $blog->image) }}');"></div>
+                                            <div class="post-content">
+                                                <h5>
+                                                    <a href="{{ url('news-details', $blog->slug) }}">
+                                                        {{ $blog->title }}
+                                                    </a>
+                                                </h5>
+                                                <div class="post-date">
+                                                    <i class="far fa-calendar-alt"></i>
+                                                    {{ \Carbon\Carbon::parse($blog->created_at)->format('d M Y') }}
+                                                </div>
+                                                <div class="post-comments">
+                                                    <i class="fal fa-comments"></i>
+                                                    {{ $blog->comments_count ?? 0 }} Comments
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="single-post-item">
-                                        <div class="thumb bg-cover"
-                                            style="background-image: url('{{ asset('assets/img/news/pp2.jpg') }}');"></div>
-                                        <div class="post-content">
-                                            <h5><a href="{{ url('news-details') }}">Top 25 Most In Demand Jobs In Canada</a>
-                                            </h5>
-                                            <div class="post-date">
-                                                <i class="far fa-calendar-alt"></i>25th March 2024
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="single-post-item">
-                                        <div class="thumb bg-cover"
-                                            style="background-image: url('{{ asset('assets/img/news/pp3.jpg') }}');"></div>
-                                        <div class="post-content">
-                                            <h5><a href="{{ url('news-details') }}">The Human Rights And Study Visa
-                                                    Programs</a>
-                                            </h5>
-                                            <div class="post-date">
-                                                <i class="far fa-calendar-alt"></i>26th March 2024
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="single-sidebar-widget">
@@ -190,16 +103,17 @@
                                 </div>
                                 <div class="widget_categories">
                                     <ul>
-                                        <li><a href="{{ url('news') }}">Abroad Study <span>23</span></a></li>
-                                        <li><a href="{{ url('news') }}">Green card <span>24</span></a></li>
-                                        <li><a href="{{ url('news') }}">PR Applicants <span>11</span></a></li>
-                                        <li><a href="{{ url('news') }}">Travel Insurance <span>05</span></a></li>
-                                        <li><a href="{{ url('news') }}">Visa Consultancy <span>06</span></a></li>
-                                        <li><a href="{{ url('news') }}">Work Permits <span>10</span></a></li>
+                                        @foreach($categories as $category)
+                                            <li>
+                                                <a href="{{ url('news', ['category' => $category->slug]) }}">
+                                                    {{ $category->name }} <span>{{ $category->blogs->count() }}</span>
+                                                </a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
-                            <div class="single-sidebar-widget">
+                            <div class="single-sidebar-widget d-none">
                                 <div class="wid-title">
                                     <h3>Never Miss News</h3>
                                 </div>
@@ -216,12 +130,9 @@
                                     <h3>Popular Tags</h3>
                                 </div>
                                 <div class="tagcloud">
-                                    <a href="{{ url('news') }}">Business</a>
-                                    <a href="{{ url('news-details') }}">Consulting</a>
-                                    <a href="{{ url('news-details') }}">Education</a>
-                                    <a href="{{ url('news-details') }}">Immigration</a>
-                                    <a href="{{ url('news-details') }}">Travel</a>
-                                    <a href="{{ url('news-details') }}">Visa</a>
+                                    @foreach($tags as $tag)
+                                        <a href="{{ url('news', ['tag' => $tag->slug]) }}">{{ $tag->name }}</a>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

@@ -37,6 +37,17 @@
   </div>
 
   <div class="col-md-6">
+    <label class="form-label">Icon</label>
+    <input type="file" name="icon" class="form-control">
+    @if(!empty($service?->icon))
+      <img src="{{ asset('storage/' . $service->icon) }}" class="img-thumbnail mt-2" style="max-height:120px">
+    @endif
+    @error('icon')
+      <div class="text-danger small">{{ $message }}</div>
+    @enderror
+  </div>
+
+  <div class="col-md-6">
     <label class="form-label">Status</label>
     <div class="d-flex align-items-center gap-3 mt-1">
       <div class="form-check">

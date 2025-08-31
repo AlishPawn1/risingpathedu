@@ -14,8 +14,8 @@
             @csrf @method('PUT')
             @include('admin.countries._form', ['country' => $country])
             <div class="col-md-6">
-              <button class="btn btn-primary">Update</button>
-              <a href="{{ route('admin.countries.index') }}" class="btn btn-secondary">Cancel</a>
+              <button class="btn btn-primary"><i class="fas fa-save me-2"></i> Update</button>
+              <a href="{{ route('admin.countries.index') }}" class="btn btn-outline-secondary"><i class="fas fa-times me-2"></i>Cancel</a>
             </div>
           </form>
         </div>

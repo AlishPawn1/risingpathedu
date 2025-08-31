@@ -36,438 +36,50 @@
                     <div class="col-lg-6 mt-5 mt-lg-0">
                         <div class="single-tab-items">
                             <ul class="nav mb-4" role="tablist">
-                                <li class="nav-item wow fadeInUp" data-wow-delay=".3s" role="presentation">
-                                    <a href="#general" data-bs-toggle="tab" class="nav-link active" aria-selected="true"
-                                        role="tab">
-                                        General
-                                    </a>
-                                </li>
-                                <li class="nav-item wow fadeInUp" data-wow-delay=".5s" role="presentation">
-                                    <a href="#service" data-bs-toggle="tab" class="nav-link" aria-selected="false"
-                                        role="tab" tabindex="-1">
-                                        Service
-                                    </a>
-                                </li>
-                                <li class="nav-item wow fadeInUp" data-wow-delay=".7s" role="presentation">
-                                    <a href="#product" data-bs-toggle="tab" class="nav-link" aria-selected="false"
-                                        role="tab" tabindex="-1">
-                                        Product
-                                    </a>
-                                </li>
-                                <li class="nav-item wow fadeInUp" data-wow-delay=".8s" role="presentation">
-                                    <a href="#team" data-bs-toggle="tab" class="nav-link" aria-selected="false" role="tab"
-                                        tabindex="-1">
-                                        Team
-                                    </a>
-                                </li>
-                                <li class="nav-item wow fadeInUp" data-wow-delay=".9s" role="presentation">
-                                    <a href="#pricing" data-bs-toggle="tab" class="nav-link" aria-selected="false"
-                                        role="tab" tabindex="-1">
-                                        Pricing
-                                    </a>
-                                </li>
+                                @foreach($faqsTabs as $tab)
+                                    <li class="nav-item wow fadeInUp" data-wow-delay="{{ $tab['delay'] }}" role="presentation">
+                                        <a href="#{{ $tab['slug'] }}" data-bs-toggle="tab"
+                                            class="nav-link {{ $loop->first ? 'active' : '' }}"
+                                            aria-selected="{{ $loop->first ? 'true' : 'false' }}" role="tab">
+                                            {{ $tab['title'] }}
+                                        </a>
+                                    </li>
+                                @endforeach
                             </ul>
                             <div class="tab-content">
-                                <div id="general" class="tab-pane fade show active" role="tabpanel">
-                                    <div class="faq-content">
-                                        <div class="faq-accordion">
-                                            <div class="accordion" id="accordion">
-                                                <div class="accordion-item wow fadeInUp" data-wow-delay=".3s">
-                                                    <h4 class="accordion-header">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#faq1"
-                                                            aria-expanded="false" aria-controls="faq1">
-                                                            How much does it cost to build an app?
-                                                        </button>
-                                                    </h4>
-                                                    <div id="faq1" class="accordion-collapse collapse"
-                                                        data-bs-parent="#accordion">
-                                                        <div class="accordion-body">
-                                                            We approached WiaTech with complex project Designing a website
-                                                            can involve various such
-                                                            as layout, graphics, content, and experience more specific
-                                                            response elaborate
+                                @foreach($faqsTabs as $tab)
+                                    <div id="{{ $tab['slug'] }}" class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
+                                        role="tabpanel">
+                                        <div class="faq-content">
+                                            <div class="faq-accordion">
+                                                <div class="accordion" id="accordion{{ $tab['slug'] }}">
+                                                    @foreach($tab['faqs'] as $faq)
+                                                        <div class="accordion-item wow fadeInUp"
+                                                            data-wow-delay="{{ $faq['delay'] }}">
+                                                            <h4 class="accordion-header">
+                                                                <button
+                                                                    class="accordion-button {{ !$loop->first ? 'collapsed' : '' }}"
+                                                                    type="button" data-bs-toggle="collapse"
+                                                                    data-bs-target="#faq{{ $tab['slug'] }}{{ $loop->index }}"
+                                                                    aria-expanded="{{ $loop->first ? 'true' : 'false' }}"
+                                                                    aria-controls="faq{{ $tab['slug'] }}{{ $loop->index }}">
+                                                                    {{ $faq['question'] }}
+                                                                </button>
+                                                            </h4>
+                                                            <div id="faq{{ $tab['slug'] }}{{ $loop->index }}"
+                                                                class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}"
+                                                                data-bs-parent="#accordion{{ $tab['slug'] }}">
+                                                                <div class="accordion-body">
+                                                                    {{ $faq['answer'] }}
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item wow fadeInUp" data-wow-delay=".5s">
-                                                    <h4 class="accordion-header">
-                                                        <button class="accordion-button" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#faq2"
-                                                            aria-expanded="true" aria-controls="faq2">
-                                                            Can you create an app for free?
-                                                        </button>
-                                                    </h4>
-                                                    <div id="faq2" class="accordion-collapse collapse show"
-                                                        data-bs-parent="#accordion">
-                                                        <div class="accordion-body">
-                                                            We approached WiaTech with complex project Designing a website
-                                                            can involve various such
-                                                            as layout, graphics, content, and experience more specific
-                                                            response elaborate
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item wow fadeInUp" data-wow-delay=".7s">
-                                                    <h4 class="accordion-header">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#faq3"
-                                                            aria-expanded="false" aria-controls="faq3">
-                                                            How can I create my own app?
-                                                        </button>
-                                                    </h4>
-                                                    <div id="faq3" class="accordion-collapse collapse"
-                                                        data-bs-parent="#accordion">
-                                                        <div class="accordion-body">
-                                                            We approached WiaTech with complex project Designing a website
-                                                            can involve various such
-                                                            as layout, graphics, content, and experience more specific
-                                                            response elaborate
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item wow fadeInUp" data-wow-delay=".9s">
-                                                    <h4 class="accordion-header">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#faq4"
-                                                            aria-expanded="false" aria-controls="faq4">
-                                                            How do I start an app business?
-                                                        </button>
-                                                    </h4>
-                                                    <div id="faq4" class="accordion-collapse collapse"
-                                                        data-bs-parent="#accordion">
-                                                        <div class="accordion-body">
-                                                            We approached WiaTech with complex project Designing a website
-                                                            can involve various such
-                                                            as layout, graphics, content, and experience more specific
-                                                            response elaborate
-                                                        </div>
-                                                    </div>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div id="service" class="tab-pane fade" role="tabpanel">
-                                    <div class="faq-content">
-                                        <div class="faq-accordion">
-                                            <div class="accordion" id="accordion2">
-                                                <div class="accordion-item wow fadeInUp" data-wow-delay=".3s">
-                                                    <h4 class="accordion-header">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#faqt1"
-                                                            aria-expanded="false" aria-controls="faqt1">
-                                                            How much does it cost to build an app?
-                                                        </button>
-                                                    </h4>
-                                                    <div id="faqt1" class="accordion-collapse collapse"
-                                                        data-bs-parent="#accordion2">
-                                                        <div class="accordion-body">
-                                                            We approached WiaTech with complex project Designing a website
-                                                            can involve various such
-                                                            as layout, graphics, content, and experience more specific
-                                                            response elaborate
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item wow fadeInUp" data-wow-delay=".5s">
-                                                    <h4 class="accordion-header">
-                                                        <button class="accordion-button" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#faqt2"
-                                                            aria-expanded="true" aria-controls="faqt2">
-                                                            Can you create an app for free?
-                                                        </button>
-                                                    </h4>
-                                                    <div id="faqt2" class="accordion-collapse collapse show"
-                                                        data-bs-parent="#accordion2">
-                                                        <div class="accordion-body">
-                                                            We approached WiaTech with complex project Designing a website
-                                                            can involve various such
-                                                            as layout, graphics, content, and experience more specific
-                                                            response elaborate
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item wow fadeInUp" data-wow-delay=".7s">
-                                                    <h4 class="accordion-header">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#faqt3"
-                                                            aria-expanded="false" aria-controls="faqt3">
-                                                            How can I create my own app?
-                                                        </button>
-                                                    </h4>
-                                                    <div id="faqt3" class="accordion-collapse collapse"
-                                                        data-bs-parent="#accordion2">
-                                                        <div class="accordion-body">
-                                                            We approached WiaTech with complex project Designing a website
-                                                            can involve various such
-                                                            as layout, graphics, content, and experience more specific
-                                                            response elaborate
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item wow fadeInUp" data-wow-delay=".9s">
-                                                    <h4 class="accordion-header">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#faqt4"
-                                                            aria-expanded="false" aria-controls="faqt4">
-                                                            How do I start an app business?
-                                                        </button>
-                                                    </h4>
-                                                    <div id="faqt4" class="accordion-collapse collapse"
-                                                        data-bs-parent="#accordion2">
-                                                        <div class="accordion-body">
-                                                            We approached WiaTech with complex project Designing a website
-                                                            can involve various such
-                                                            as layout, graphics, content, and experience more specific
-                                                            response elaborate
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="product" class="tab-pane fade" role="tabpanel">
-                                    <div class="faq-content">
-                                        <div class="faq-accordion">
-                                            <div class="accordion" id="accordion3">
-                                                <div class="accordion-item wow fadeInUp" data-wow-delay=".3s">
-                                                    <h4 class="accordion-header">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#faqp1"
-                                                            aria-expanded="false" aria-controls="faqp1">
-                                                            How much does it cost to build an app?
-                                                        </button>
-                                                    </h4>
-                                                    <div id="faqp1" class="accordion-collapse collapse"
-                                                        data-bs-parent="#accordion3">
-                                                        <div class="accordion-body">
-                                                            We approached WiaTech with complex project Designing a website
-                                                            can involve various such
-                                                            as layout, graphics, content, and experience more specific
-                                                            response elaborate
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item wow fadeInUp" data-wow-delay=".5s">
-                                                    <h4 class="accordion-header">
-                                                        <button class="accordion-button" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#faqp2"
-                                                            aria-expanded="true" aria-controls="faqp2">
-                                                            Can you create an app for free?
-                                                        </button>
-                                                    </h4>
-                                                    <div id="faqp2" class="accordion-collapse collapse show"
-                                                        data-bs-parent="#accordion3">
-                                                        <div class="accordion-body">
-                                                            We approached WiaTech with complex project Designing a website
-                                                            can involve various such
-                                                            as layout, graphics, content, and experience more specific
-                                                            response elaborate
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item wow fadeInUp" data-wow-delay=".7s">
-                                                    <h4 class="accordion-header">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#faqp3"
-                                                            aria-expanded="false" aria-controls="faqp3">
-                                                            How can I create my own app?
-                                                        </button>
-                                                    </h4>
-                                                    <div id="faqp3" class="accordion-collapse collapse"
-                                                        data-bs-parent="#accordion3">
-                                                        <div class="accordion-body">
-                                                            We approached WiaTech with complex project Designing a website
-                                                            can involve various such
-                                                            as layout, graphics, content, and experience more specific
-                                                            response elaborate
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item wow fadeInUp" data-wow-delay=".9s">
-                                                    <h4 class="accordion-header">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#faqp4"
-                                                            aria-expanded="false" aria-controls="faqp4">
-                                                            How do I start an app business?
-                                                        </button>
-                                                    </h4>
-                                                    <div id="faqp4" class="accordion-collapse collapse"
-                                                        data-bs-parent="#accordion3">
-                                                        <div class="accordion-body">
-                                                            We approached WiaTech with complex project Designing a website
-                                                            can involve various such
-                                                            as layout, graphics, content, and experience more specific
-                                                            response elaborate
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="team" class="tab-pane fade" role="tabpanel">
-                                    <div class="faq-content">
-                                        <div class="faq-accordion">
-                                            <div class="accordion" id="accordion5">
-                                                <div class="accordion-item wow fadeInUp" data-wow-delay=".3s">
-                                                    <h4 class="accordion-header">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#faq11"
-                                                            aria-expanded="false" aria-controls="faq11">
-                                                            How much does it cost to build an app?
-                                                        </button>
-                                                    </h4>
-                                                    <div id="faq11" class="accordion-collapse collapse"
-                                                        data-bs-parent="#accordion5">
-                                                        <div class="accordion-body">
-                                                            We approached WiaTech with complex project Designing a website
-                                                            can involve various such
-                                                            as layout, graphics, content, and experience more specific
-                                                            response elaborate
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item wow fadeInUp" data-wow-delay=".5s">
-                                                    <h4 class="accordion-header">
-                                                        <button class="accordion-button" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#faq22"
-                                                            aria-expanded="true" aria-controls="faq22">
-                                                            Can you create an app for free?
-                                                        </button>
-                                                    </h4>
-                                                    <div id="faq22" class="accordion-collapse collapse show"
-                                                        data-bs-parent="#accordion5">
-                                                        <div class="accordion-body">
-                                                            We approached WiaTech with complex project Designing a website
-                                                            can involve various such
-                                                            as layout, graphics, content, and experience more specific
-                                                            response elaborate
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item wow fadeInUp" data-wow-delay=".7s">
-                                                    <h4 class="accordion-header">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#faq33"
-                                                            aria-expanded="false" aria-controls="faq33">
-                                                            How can I create my own app?
-                                                        </button>
-                                                    </h4>
-                                                    <div id="faq33" class="accordion-collapse collapse"
-                                                        data-bs-parent="#accordion5">
-                                                        <div class="accordion-body">
-                                                            We approached WiaTech with complex project Designing a website
-                                                            can involve various such
-                                                            as layout, graphics, content, and experience more specific
-                                                            response elaborate
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item wow fadeInUp" data-wow-delay=".9s">
-                                                    <h4 class="accordion-header">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#faq44"
-                                                            aria-expanded="false" aria-controls="faq44">
-                                                            How do I start an app business?
-                                                        </button>
-                                                    </h4>
-                                                    <div id="faq44" class="accordion-collapse collapse"
-                                                        data-bs-parent="#accordion5">
-                                                        <div class="accordion-body">
-                                                            We approached WiaTech with complex project Designing a website
-                                                            can involve various such
-                                                            as layout, graphics, content, and experience more specific
-                                                            response elaborate
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="pricing" class="tab-pane fade" role="tabpanel">
-                                    <div class="faq-content">
-                                        <div class="faq-accordion">
-                                            <div class="accordion" id="accordion6">
-                                                <div class="accordion-item wow fadeInUp" data-wow-delay=".3s">
-                                                    <h4 class="accordion-header">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#faq15"
-                                                            aria-expanded="false" aria-controls="faq15">
-                                                            How much does it cost to build an app?
-                                                        </button>
-                                                    </h4>
-                                                    <div id="faq15" class="accordion-collapse collapse"
-                                                        data-bs-parent="#accordion6">
-                                                        <div class="accordion-body">
-                                                            We approached WiaTech with complex project Designing a website
-                                                            can involve various such
-                                                            as layout, graphics, content, and experience more specific
-                                                            response elaborate
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item wow fadeInUp" data-wow-delay=".5s">
-                                                    <h4 class="accordion-header">
-                                                        <button class="accordion-button" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#faq25"
-                                                            aria-expanded="true" aria-controls="faq25">
-                                                            Can you create an app for free?
-                                                        </button>
-                                                    </h4>
-                                                    <div id="faq25" class="accordion-collapse collapse show"
-                                                        data-bs-parent="#accordion6">
-                                                        <div class="accordion-body">
-                                                            We approached WiaTech with complex project Designing a website
-                                                            can involve various such
-                                                            as layout, graphics, content, and experience more specific
-                                                            response elaborate
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item wow fadeInUp" data-wow-delay=".7s">
-                                                    <h4 class="accordion-header">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#faq35"
-                                                            aria-expanded="false" aria-controls="faq35">
-                                                            How can I create my own app?
-                                                        </button>
-                                                    </h4>
-                                                    <div id="faq35" class="accordion-collapse collapse"
-                                                        data-bs-parent="#accordion6">
-                                                        <div class="accordion-body">
-                                                            We approached WiaTech with complex project Designing a website
-                                                            can involve various such
-                                                            as layout, graphics, content, and experience more specific
-                                                            response elaborate
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item wow fadeInUp" data-wow-delay=".9s">
-                                                    <h4 class="accordion-header">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#faq45"
-                                                            aria-expanded="false" aria-controls="faq45">
-                                                            How do I start an app business?
-                                                        </button>
-                                                    </h4>
-                                                    <div id="faq45" class="accordion-collapse collapse"
-                                                        data-bs-parent="#accordion6">
-                                                        <div class="accordion-body">
-                                                            We approached WiaTech with complex project Designing a website
-                                                            can involve various such
-                                                            as layout, graphics, content, and experience more specific
-                                                            response elaborate
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

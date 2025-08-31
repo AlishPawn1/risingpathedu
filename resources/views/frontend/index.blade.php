@@ -15,7 +15,8 @@
                     <div class="shape-image-2 fadeInRight animated" data-animation="fadeInRight" data-delay="2.3s">
                         <img src="{{ asset('assets/img/hero/right-shape.png') }}" alt="shape-img">
                     </div>
-                    <div class="hero-image bg-cover" style="background-image: url('{{ asset('assets/img/hero/hero-1.jpg') }}');"></div>
+                    <div class="hero-image bg-cover"
+                        style="background-image: url('{{ asset('assets/img/hero/hero-1.jpg') }}');"></div>
                     <div class="container">
                         <div class="row g-4">
                             <div class="col-lg-8">
@@ -31,9 +32,8 @@
                                     </p>
                                     <div class="hero-button">
                                         <a href="{{ url('/') }}" class="theme-btn theme-color-2"
-                                            data-animation="slideInRight" data-duration="2s"
-                                            data-delay=".9s"><span>Learn More <i
-                                                    class="fas fa-chevron-right"></i></span></a>
+                                            data-animation="slideInRight" data-duration="2s" data-delay=".9s"><span>Learn
+                                                More <i class="fas fa-chevron-right"></i></span></a>
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +47,8 @@
                     <div class="shape-image-2 fadeInRight animated" data-animation="fadeInRight" data-delay="2.3s">
                         <img src="assets/img/hero/right-shape.png" alt="shape-img">
                     </div>
-                    <div class="hero-image bg-cover" style="background-image: url('{{ asset('assets/img/hero/hero-2.jpg') }}');"></div>
+                    <div class="hero-image bg-cover"
+                        style="background-image: url('{{ asset('assets/img/hero/hero-2.jpg') }}');"></div>
                     <div class="container">
                         <div class="row g-4">
                             <div class="col-lg-8">
@@ -62,9 +63,8 @@
                                         industry and exchange the worldwide trade of merchandi
                                     </p>
                                     <div class="hero-button">
-                                        <a href="index.html" class="theme-btn theme-color-2"
-                                            data-animation="slideInRight" data-duration="2s"
-                                            data-delay=".9s"><span>Learn More <i
+                                        <a href="index.html" class="theme-btn theme-color-2" data-animation="slideInRight"
+                                            data-duration="2s" data-delay=".9s"><span>Learn More <i
                                                     class="fas fa-chevron-right"></i></span></a>
                                     </div>
                                 </div>
@@ -79,7 +79,8 @@
                     <div class="shape-image-2 fadeInRight animated" data-animation="fadeInRight" data-delay="2.3s">
                         <img src="assets/img/hero/right-shape.png" alt="shape-img">
                     </div>
-                    <div class="hero-image bg-cover" style="background-image: url('{{ asset('assets/img/hero/hero-3.jpg') }}');"></div>
+                    <div class="hero-image bg-cover"
+                        style="background-image: url('{{ asset('assets/img/hero/hero-3.jpg') }}');"></div>
                     <div class="container">
                         <div class="row g-4">
                             <div class="col-lg-8">
@@ -94,9 +95,8 @@
                                         industry and exchange the worldwide trade of merchandi
                                     </p>
                                     <div class="hero-button">
-                                        <a href="index.html" class="theme-btn theme-color-2"
-                                            data-animation="slideInRight" data-duration="2s"
-                                            data-delay=".9s"><span>Learn More <i
+                                        <a href="/" class="theme-btn theme-color-2" data-animation="slideInRight"
+                                            data-duration="2s" data-delay=".9s"><span>Learn More <i
                                                     class="fas fa-chevron-right"></i></span></a>
                                     </div>
                                 </div>
@@ -126,9 +126,8 @@
                                         industry and exchange the worldwide trade of merchandi
                                     </p>
                                     <div class="hero-button">
-                                        <a href="index.html" class="theme-btn theme-color-2"
-                                            data-animation="slideInRight" data-duration="2s"
-                                            data-delay=".9s"><span>Learn More <i
+                                        <a href="/" class="theme-btn theme-color-2" data-animation="slideInRight"
+                                            data-duration="2s" data-delay=".9s"><span>Learn More <i
                                                     class="fas fa-chevron-right"></i></span></a>
                                     </div>
                                 </div>
@@ -243,101 +242,31 @@
         </div>
         <div class="service-wrapper">
             <div class="row">
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".2s">
-                    <div class="service-card-items">
-                        <h3><a href="{{ url('service-details') }}">Business Visa</a></h3>
-                        <p>
-                            Sit amet consectetur bestibulu ullamcorer arcustulla amet dolor tortor elementum
-                        </p>
-                        <div class="service-thumb">
-                            <img src="assets/img/service/01.jpg" alt="img">
+                @foreach ($services->take(4) as $index => $service)
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="{{ 0.2 * $index }}s">
+                        <div class="service-card-items {{ $index == 2 ? 'active' : '' }}">
+                            <div>
+                                <h3><a href="{{ url('service/' . $service->slug) }}">{{ $service->title }}</a></h3>
+                                <p>
+                                    {{ Str::limit($service->short_description, 50) }}
+                                </p>
+                            </div>
+                            <div>
+                                <div class="service-thumb">
+                                    <img src="{{ $service->image ? asset('storage/' . $service->image) : asset('assets/img/backfall-user.png') }}"
+                                        alt="{{ $service->title }}">
+                                </div>
+                                <a href="{{ url('service/' . $service->slug) }}" class="link-btn">
+                                    <span>read more</span>
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </div>
                         </div>
-                        <a href="service-details.html" class="link-btn">
-                            <span>read more</span>
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
                     </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".4s">
-                    <div class="service-card-items">
-                        <h3><a href="service-details.html">Student Visa</a></h3>
-                        <p>
-                            Sit amet consectetur bestibulu ullamcorer arcustulla amet dolor tortor elementum
-                        </p>
-                        <div class="service-thumb">
-                            <img src="assets/img/service/02.jpg" alt="img">
-                        </div>
-                        <a href="service-details.html" class="link-btn">
-                            <span>read more</span>
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".6s">
-                    <div class="service-card-items active">
-                        <h3><a href="service-details.html">Work Visa</a></h3>
-                        <p>
-                            Sit amet consectetur bestibulu ullamcorer arcustulla amet dolor tortor elementum
-                        </p>
-                        <div class="service-thumb">
-                            <img src="assets/img/service/03.jpg" alt="img">
-                        </div>
-                        <a href="service-details.html" class="link-btn">
-                            <span>read more</span>
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".8s">
-                    <div class="service-card-items">
-                        <h3><a href="service-details.html">Touriest Visa</a></h3>
-                        <p>
-                            Sit amet consectetur bestibulu ullamcorer arcustulla amet dolor tortor elementum
-                        </p>
-                        <div class="service-thumb">
-                            <img src="assets/img/service/04.jpg" alt="img">
-                        </div>
-                        <a href="service-details.html" class="link-btn">
-                            <span>read more</span>
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
-
-    <!--<< Brand Section Start >>-->
-    <!-- <div class="brand-section fix section-padding pt-0">
-        <div class="container">
-            <div class="brand-wrapper">
-                <h6 class="text-center wow fadeInUp" data-wow-delay=".3s">1K+ BRANDS TRUST US</h6>
-                <div class="brand-carousel-active">
-                    <div class="brand-image">
-                        <img src="assets/img/brand/01.png" alt="brand-img">
-                    </div>
-                    <div class="brand-image">
-                        <img src="assets/img/brand/01.png" alt="brand-img">
-                    </div>
-                    <div class="brand-image">
-                        <img src="assets/img/brand/01.png" alt="brand-img">
-                    </div>
-                    <div class="brand-image">
-                        <img src="assets/img/brand/01.png" alt="brand-img">
-                    </div>
-                    <div class="brand-image">
-                        <img src="assets/img/brand/01.png" alt="brand-img">
-                    </div>
-                    <div class="brand-image">
-                        <img src="assets/img/brand/01.png" alt="brand-img">
-                    </div>
-                    <div class="brand-image">
-                        <img src="assets/img/brand/01.png" alt="brand-img">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
     <!--<< Countries Section Start >>-->
     <section class="countries-section fix section-padding pt-0">
@@ -347,78 +276,19 @@
                 <h2 class="title-anim">Countries We Support <br> for Immigration.</h2>
             </div>
             <div class="row">
-                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                    <div class="countries-card-items">
-                        <div class="thumb">
-                            <img src="assets/img/flag/japan.png" alt="img">
-                        </div>
-                        <div class="content">
-                            <h3><a href="country-details.html">Japan </a></h3>
-                            <p>Average time to resolve a
-                                cyber.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
-                    <div class="countries-card-items">
-                        <div class="thumb">
-                            <img src="assets/img/flag/canada.png" alt="img">
-                        </div>
-                        <div class="content">
-                            <h3><a href="country-details.html">Canada </a></h3>
-                            <p>Average time to resolve a
-                                cyber.</p>
+                @foreach ($countries->where('is_active', 1)->take(6) as $country)
+                    <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="{{ 0.3 + (0.2 * $loop->index) }}s">
+                        <div class="countries-card-items">
+                            <div class="thumb">
+                                <img src="{{ asset('storage/' . $country->flag) }}" alt="{{ $country->name }}">
+                            </div>
+                            <div class="content">
+                                <h3><a href="{{ route('countries.show', $country->slug) }}">{{ $country->name }}</a></h3>
+                                <p>{{ Str::limit($country->short_text, 50) }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".7s">
-                    <div class="countries-card-items">
-                        <div class="thumb">
-                            <img src="assets/img/flag/aus.jpg" alt="img">
-                        </div>
-                        <div class="content">
-                            <h3><a href="country-details.html">Australia </a></h3>
-                            <p>Average time to resolve a
-                                cyber.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                    <div class="countries-card-items">
-                        <div class="thumb">
-                            <img src="assets/img/flag/us.png" alt="img">
-                        </div>
-                        <div class="content">
-                            <h3><a href="country-details.html">United States </a></h3>
-                            <p>Average time to resolve a
-                                cyber.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
-                    <div class="countries-card-items">
-                        <div class="thumb">
-                            <img src="assets/img/flag/uk.png" alt="img">
-                        </div>
-                        <div class="content">
-                            <h3><a href="country-details.html">United Kingdom</a></h3>
-                            <p>Average time to resolve a
-                                cyber.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".7s">
-                    <div class="countries-card-items">
-                        <div class="thumb">
-                            <img src="assets/img/flag/norway.png" alt="img">
-                        </div>
-                        <div class="content">
-                            <h3><a href="country-details.html">Norway</a></h3>
-                            <p>Average time to resolve a
-                                cyber.</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -495,106 +365,34 @@
                 </h2>
             </div>
             <div class="row">
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                    <div class="team-box-items style-2">
-                        <div class="team-image">
-                            <img src="assets/img/team/1.png" alt="img">
-                            <ul class="social-icon d-grid justify-content-center align-items-center">
-                                <li>
-                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-instagram"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="team-content">
-                            <h3><a href="team-details.html">Devid Miller</a></h3>
-                            <p>Consultant</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".5s">
-                    <div class="team-box-items">
-                        <div class="team-image">
-                            <img src="assets/img/team/1.png" alt="img">
-                            <ul class="social-icon d-grid justify-content-center align-items-center">
-                                <li>
-                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-instagram"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="team-content">
-                            <h3><a href="team-details.html">Ritu Ratia</a></h3>
-                            <p>Consultant</p>
+                @foreach($teams as $index => $team)
+                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="{{ 0.2 + (0.2 * $index) }}s">
+                        <div class="team-box-items {{ $index % 2 == 0 ? 'style-2' : '' }}">
+                            <div class="team-image">
+                                <img src="{{ $team->image ? asset('storage/' . $team->image) : asset('assets/img/team/1.png') }}"
+                                    alt="{{ $team->name }}">
+                                <ul class="social-icon d-grid justify-content-center align-items-center">
+                                    @if($team->facebook)
+                                        <li><a href="{{ $team->facebook }}"><i class="fab fa-facebook-f"></i></a></li>
+                                    @endif
+                                    @if($team->twitter)
+                                        <li><a href="{{ $team->twitter }}"><i class="fab fa-twitter"></i></a></li>
+                                    @endif
+                                    @if($team->instagram)
+                                        <li><a href="{{ $team->instagram }}"><i class="fab fa-instagram"></i></a></li>
+                                    @endif
+                                    @if($team->linkedin)
+                                        <li><a href="{{ $team->linkedin }}"><i class="fab fa-linkedin"></i></a></li>
+                                    @endif
+                                </ul>
+                            </div>
+                            <div class="team-content">
+                                <h3><a href="{{ route('teams.show', $team->slug) }}">{{ $team->name }}</a></h3>
+                                <p>{{ $team->post }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".7s">
-                    <div class="team-box-items style-2">
-                        <div class="team-image">
-                            <img src="assets/img/team/1.png" alt="img">
-                            <ul class="social-icon d-grid justify-content-center align-items-center">
-                                <li>
-                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-instagram"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="team-content">
-                            <h3><a href="team-details.html">Shikhon Islam</a></h3>
-                            <p>Consultant</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".9s">
-                    <div class="team-box-items">
-                        <div class="team-image">
-                            <img src="assets/img/team/1.png" alt="img">
-                            <ul class="social-icon d-grid justify-content-center align-items-center">
-                                <li>
-                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-instagram"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="team-content">
-                            <h3><a href="team-details.html">Sonsil Macron</a></h3>
-                            <p>Consultant</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -749,88 +547,25 @@
                 </h2>
             </div>
             <div class="testimonial-carousel-active">
-                <div class="testimonial-card-items">
-                    <div class="author-items">
-                        <div class="author-image bg-cover"
-                            style="background-image: url('assets/img/testimonial/1.png');"></div>
-                        <div class="author-content">
-                            <h5>Kawser Ahmed</h5>
-                            <span>Web Developer</span>
+                @foreach($testimonials as $testimonial)
+                    <div class="testimonial-card-items">
+                        <div class="author-items">
+                            <div class="author-image bg-cover"
+                                style="background-image: url('{{ $testimonial->image ? asset('storage/' . $testimonial->image) : asset('assets/img/testimonial/1.png') }}');">
+                            </div>
+                            <div class="author-content">
+                                <h5>{{ $testimonial->name }}</h5>
+                                <span>{{ $testimonial->post }}</span>
+                            </div>
                         </div>
+                        <p>
+                            {!! Str::limit($testimonial->description, 300) !!}
+                        </p>
+                        <ul>
+                            <li>{{ \Carbon\Carbon::parse($testimonial->created_at)->format('F d, Y') }}</li>
+                        </ul>
                     </div>
-                    <p>
-                        creative agency, we believe in the Eid
-                        and innovation. We are constantly melt
-                        of what is possible, and strive to cat
-                        only bea utiful and effective,but shark
-                        inventore veritatis et quasi archite
-                        cto beatae citae dicta sunt atlantic
-                    </p>
-                    <ul>
-                        <li>January 23, 2024</li>
-                    </ul>
-                </div>
-                <div class="testimonial-card-items">
-                    <div class="author-items">
-                        <div class="author-image bg-cover"
-                            style="background-image: url('assets/img/testimonial/1.png');"></div>
-                        <div class="author-content">
-                            <h5>Jhon Dev</h5>
-                            <span>UI Designer</span>
-                        </div>
-                    </div>
-                    <p>
-                        creative agency, we believe in the Eid
-                        and innovation. We are constantly melt
-                        of what is possible, and strive to cat
-                        only bea utiful and effective,but shark
-                        inventore veritatis et quasi archite
-                        cto beatae citae dicta sunt atlantic
-                    </p>
-                    <ul>
-                        <li>January 23, 2024</li>
-                    </ul>
-                </div>
-                <div class="testimonial-card-items">
-                    <div class="author-items">
-                        <div class="author-image bg-cover"
-                            style="background-image: url('assets/img/testimonial/1.png');"></div>
-                        <div class="author-content">
-                            <h5>Salman Ahmed</h5>
-                            <span>WordPress Developer</span>
-                        </div>
-                    </div>
-                    <p>
-                        creative agency, we believe in the Eid
-                        and innovation. We are constantly melt
-                        of what is possible, and strive to cat
-                        we pride ourselve on delivering
-                    </p>
-                    <ul>
-                        <li>May 15, 2023</li>
-                    </ul>
-                </div>
-                <div class="testimonial-card-items">
-                    <div class="author-items">
-                        <div class="author-image bg-cover"
-                            style="background-image: url('assets/img/testimonial/1.png');"></div>
-                        <div class="author-content">
-                            <h5>Shikon Islam</h5>
-                            <span>Frontend Engineer</span>
-                        </div>
-                    </div>
-                    <p>
-                        creative agency, we believe in the Eid
-                        and innovation. We are constantly melt
-                        of what is possible, and strive to cat
-                        only bea utiful and effective,but shark
-                        inventore veritatis et quasi archite
-                        cto beatae citae dicta sunt atlantic
-                    </p>
-                    <ul>
-                        <li>January 23, 2024</li>
-                    </ul>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -848,7 +583,7 @@
                         <p>Lorem ipsum dolor sit amet, consectetur notted adipisicin</p>
                     </div>
                 </div>
-                <a href="contact.html" class="theme-btn bg-white wow fadeInUp" data-wow-delay=".5s">
+                <a href="/contact" class="theme-btn bg-white wow fadeInUp" data-wow-delay=".5s">
                     <span>
                         Lets Get Started
                         <i class="fas fa-chevron-right"></i>
@@ -941,197 +676,105 @@
     </section>
 
     <!--<< Contact Section Start >>-->
-    <section class="contact-section-one fix">
-        <div class="container">
-            <div class="contact-wrapper">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6">
-                        <div class="contact-left">
-                            <div class="contact-bg bg-cover"
-                                style="background-image: url('assets/img/contact/01.jpg');"></div>
-                            <div class="contact-shape" style="background-image: url(assets/img/contact/bg-shape.png);">
-                            </div>
-                            <div class="section-title">
-                                <span class="text-white">Contact us</span>
-                                <h2 class="text-white title-anim">Get a Call Back</h2>
-                            </div>
-                            <form action="#" id="contact-form" method="POST" class="mt-4 mt-md-0">
-                                <div class="row g-3">
-                                    <div class="col-lg-6 wow fadeInUp" data-wow-delay=".3s">
-                                        <div class="form-clt">
-                                            <input type="text" name="name" id="name" placeholder="First Name">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 wow fadeInUp" data-wow-delay=".3s">
-                                        <div class="form-clt">
-                                            <input type="text" name="email" id="email" placeholder="Email Address">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 wow fadeInUp" data-wow-delay=".5s">
-                                        <div class="form-clt">
-                                            <input type="text" name="phone" id="phone" placeholder="Phone Number">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 wow fadeInUp" data-wow-delay=".5s">
-                                        <div class="form-clt">
-                                            <div class="nice-select open" tabindex="0">
-                                                <span class="current">
-                                                    Choose Services
-                                                </span>
-                                                <ul class="list">
-                                                    <li data-value="1" class="option selected focus">
-                                                        Default sorting
-                                                    </li>
-                                                    <li data-value="1" class="option">
-                                                        Sort by popularity
-                                                    </li>
-                                                    <li data-value="1" class="option">
-                                                        Sort by average rating
-                                                    </li>
-                                                    <li data-value="1" class="option">
-                                                        Sort by latest
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 wow fadeInUp" data-wow-delay=".3s">
-                                        <div class="form-clt">
-                                            <textarea name="message" id="message"
-                                                placeholder="Write Your Message"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 wow fadeInUp" data-wow-delay=".5s">
-                                        <button type="submit" class="theme-btn">
-                                            <span>
-                                                Send Us Messages
-                                                <i class="fas fa-chevron-right"></i>
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6">
-                        <div class="contact-right">
-                            <div class="google-map-box">
-                                <iframe
-                                    src="https://maps.google.com/maps?q=Putalisadak%2C%20Kathmandu%2044600&z=16&output=embed"
-                                    width="100%"
-                                    height="450"
-                                    style="border:0;"
-                                    allowfullscreen=""
-                                    loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"
-                                    title="Map: Putalisadak, Kathmandu">
-                                    </iframe>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <x-contact-section />
 
     <!--<< News Section Start >>-->
     <!-- <section class="news-section fix section-padding">
-        <div class="container">
-            <div class="section-title text-center">
-                <span class="wow fadeInUp">News & Blog</span>
-                <h2 class="title-anim">Read Our Latest News & Blog</h2>
-            </div>
-            <div class="row">
-                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                    <div class="news-box-items">
-                        <div class="news-image">
-                            <img src="assets/img/news/01.jpg" alt="img">
-                            <img src="assets/img/news/01.jpg" alt="img">
-                            <h6 class="date">26 <span>Nov</span></h6>
-                        </div>
-                        <div class="news-content">
-                            <ul class="post-date">
-                                <li>
-                                    <i class="far fa-user-circle"></i>
-                                    Shikhon .H
-                                </li>
-                                <li>
-                                    <i class="fal fa-comments"></i>
-                                    Comments (03)
-                                </li>
-                            </ul>
-                            <h3><a href="news-details.html">Navigating Borders Ultimate Guide to Visa Success</a></h3>
-                            <p>
-                                Transmds is the world’s driving worldwide coordinations supplier
-                                we uphold.
-                            </p>
-                            <a href="news-details.html" class="link-btn">
-                                <span>Read More</span> <i class="fas fa-chevron-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
-                    <div class="news-box-items">
-                        <div class="news-image">
-                            <img src="assets/img/news/02.jpg" alt="img">
-                            <img src="assets/img/news/02.jpg" alt="img">
-                            <h6 class="date">11 <span>Dec</span></h6>
-                        </div>
-                        <div class="news-content">
-                            <ul class="post-date">
-                                <li>
-                                    <i class="far fa-user-circle"></i>
-                                    Shikhon .H
-                                </li>
-                                <li>
-                                    <i class="fal fa-comments"></i>
-                                    Comments (03)
-                                </li>
-                            </ul>
-                            <h3><a href="news-details.html">Unlocking Opportunities The Visa Journey Unveiled</a></h3>
-                            <p>
-                                Transmds is the world’s driving worldwide coordinations supplier
-                                we uphold.
-                            </p>
-                            <a href="news-details.html" class="link-btn">
-                                <span>Read More</span> <i class="fas fa-chevron-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".7s">
-                    <div class="news-box-items">
-                        <div class="news-image">
-                            <img src="assets/img/news/09.jpg" alt="img">
-                            <img src="assets/img/news/09.jpg" alt="img">
-                            <h6 class="date">27 <span>Sep</span></h6>
-                        </div>
-                        <div class="news-content">
-                            <ul class="post-date">
-                                <li>
-                                    <i class="far fa-user-circle"></i>
-                                    Shikhon .H
-                                </li>
-                                <li>
-                                    <i class="fal fa-comments"></i>
-                                    Comments (03)
-                                </li>
-                            </ul>
-                            <h3><a href="news-details.html">Navigating Borders Ultimate Guide to Visa Success</a></h3>
-                            <p>
-                                Transmds is the world’s driving worldwide coordinations supplier
-                                we uphold.
-                            </p>
-                            <a href="news-details.html" class="link-btn">
-                                <span>Read More</span> <i class="fas fa-chevron-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
+                            <div class="container">
+                                <div class="section-title text-center">
+                                    <span class="wow fadeInUp">News & Blog</span>
+                                    <h2 class="title-anim">Read Our Latest News & Blog</h2>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
+                                        <div class="news-box-items">
+                                            <div class="news-image">
+                                                <img src="assets/img/news/01.jpg" alt="img">
+                                                <img src="assets/img/news/01.jpg" alt="img">
+                                                <h6 class="date">26 <span>Nov</span></h6>
+                                            </div>
+                                            <div class="news-content">
+                                                <ul class="post-date">
+                                                    <li>
+                                                        <i class="far fa-user-circle"></i>
+                                                        Shikhon .H
+                                                    </li>
+                                                    <li>
+                                                        <i class="fal fa-comments"></i>
+                                                        Comments (03)
+                                                    </li>
+                                                </ul>
+                                                <h3><a href="news-details.html">Navigating Borders Ultimate Guide to Visa Success</a></h3>
+                                                <p>
+                                                    Transmds is the world’s driving worldwide coordinations supplier
+                                                    we uphold.
+                                                </p>
+                                                <a href="news-details.html" class="link-btn">
+                                                    <span>Read More</span> <i class="fas fa-chevron-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
+                                        <div class="news-box-items">
+                                            <div class="news-image">
+                                                <img src="assets/img/news/02.jpg" alt="img">
+                                                <img src="assets/img/news/02.jpg" alt="img">
+                                                <h6 class="date">11 <span>Dec</span></h6>
+                                            </div>
+                                            <div class="news-content">
+                                                <ul class="post-date">
+                                                    <li>
+                                                        <i class="far fa-user-circle"></i>
+                                                        Shikhon .H
+                                                    </li>
+                                                    <li>
+                                                        <i class="fal fa-comments"></i>
+                                                        Comments (03)
+                                                    </li>
+                                                </ul>
+                                                <h3><a href="news-details.html">Unlocking Opportunities The Visa Journey Unveiled</a></h3>
+                                                <p>
+                                                    Transmds is the world’s driving worldwide coordinations supplier
+                                                    we uphold.
+                                                </p>
+                                                <a href="news-details.html" class="link-btn">
+                                                    <span>Read More</span> <i class="fas fa-chevron-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".7s">
+                                        <div class="news-box-items">
+                                            <div class="news-image">
+                                                <img src="assets/img/news/09.jpg" alt="img">
+                                                <img src="assets/img/news/09.jpg" alt="img">
+                                                <h6 class="date">27 <span>Sep</span></h6>
+                                            </div>
+                                            <div class="news-content">
+                                                <ul class="post-date">
+                                                    <li>
+                                                        <i class="far fa-user-circle"></i>
+                                                        Shikhon .H
+                                                    </li>
+                                                    <li>
+                                                        <i class="fal fa-comments"></i>
+                                                        Comments (03)
+                                                    </li>
+                                                </ul>
+                                                <h3><a href="news-details.html">Navigating Borders Ultimate Guide to Visa Success</a></h3>
+                                                <p>
+                                                    Transmds is the world’s driving worldwide coordinations supplier
+                                                    we uphold.
+                                                </p>
+                                                <a href="news-details.html" class="link-btn">
+                                                    <span>Read More</span> <i class="fas fa-chevron-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section> -->
 
 @endsection

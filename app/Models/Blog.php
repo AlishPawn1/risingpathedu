@@ -13,6 +13,8 @@ class Blog extends Model
         'description',
         'image',
         'status',
+        'meta_title',
+        'meta_description'
     ];
 
     // RELATIONSHIPS
@@ -26,4 +28,8 @@ class Blog extends Model
         return $this->belongsToMany(Tag::class, 'blog_tag', 'blog_id', 'tag_id');
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

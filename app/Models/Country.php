@@ -11,10 +11,22 @@ class Country extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name','slug','short_text' ,'flag','description','is_active'
+        'name',
+        'slug',
+        'flag',
+        'image',
+        'short_text',
+        'is_active',
+        'description',
+        'institutes',
+        'media_type',
+        'media_url',
+        'meta_title',
+        'meta_description',
     ];
 
-    public function successStories() {
+    public function successStories()
+    {
         return $this->hasMany(SuccessStory::class);
     }
 }

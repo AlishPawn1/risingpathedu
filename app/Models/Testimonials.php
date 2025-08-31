@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Testimonials extends Model
 {
-       protected $fillable = [
+    protected $fillable = [
         'name',
         'slug',
         'post',
         'description',
         'image',
+        'meta_title',
+        'meta_description',
     ];
 }

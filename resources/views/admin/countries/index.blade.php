@@ -7,7 +7,8 @@
       <div class="card">
         <div class="p-4">
           <!-- Header -->
-          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center border-bottom pb-3 mb-4">
+          <div
+            class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center border-bottom pb-3 mb-4">
             <div class="mb-3 mb-sm-0">
               <h2 class="h5 mb-1">Countries</h2>
               <p class="small">
@@ -15,9 +16,10 @@
               </p>
             </div>
             <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3">
-              <form method="GET" action="{{ route('admin.countries.index') }}" class="d-flex flex-column flex-sm-row gap-2">
-                <input type="text" name="search" class="form-control w-auto mb-3 mb-sm-0" placeholder="Search countries..."
-                  value="{{ request('search') }}">
+              <form method="GET" action="{{ route('admin.countries.index') }}"
+                class="d-flex flex-column flex-sm-row gap-2">
+                <input type="text" name="search" class="form-control w-auto mb-3 mb-sm-0"
+                  placeholder="Search countries..." value="{{ request('search') }}">
                 <select class="form-select w-auto mb-3 mb-sm-0" style="min-width: 200px" name="active"
                   onchange="this.form.submit()">
                   <option value="">All Status</option>
@@ -44,14 +46,15 @@
               <thead>
                 <tr>
                   <th scope="col">S.N</th>
-                  <th scope="col">Image</th>
+                  <th scope="col">Flag</th>
                   <th scope="col">Name</th>
                   <th scope="col">Active</th>
+                  <th scope="col">Image</th>
                   <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                @forelse($countries  as $c)
+                @forelse($countries as $c)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>
@@ -64,6 +67,11 @@
                       <span class="badge bg-{{ $c->is_active ? 'success' : 'secondary' }}">
                         {{ $c->is_active ? 'Yes' : 'No' }}
                       </span>
+                    </td>
+                    <td>
+                      @if($c->image)
+                        <img src="{{ asset('storage/' . $c->image) }}" class="img-thumbnail" style="max-height: 100px;">
+                      @endif
                     </td>
                     <td>
                       <div class="d-flex gap-2">
@@ -94,7 +102,8 @@
           <!-- Pagination -->
           <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center mt-4">
             <div class="mb-3 mb-sm-0">
-              Showing {{ $countries->firstItem() ?? 0 }} to {{ $countries->lastItem() ?? 0 }} of {{ $countries->total() }} countries
+              Showing {{ $countries->firstItem() ?? 0 }} to {{ $countries->lastItem() ?? 0 }} of {{ $countries->total() }}
+              countries
             </div>
             <nav>
               {{ $countries->links('pagination::bootstrap-4') }}

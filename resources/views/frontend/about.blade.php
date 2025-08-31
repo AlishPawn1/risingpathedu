@@ -97,7 +97,7 @@
     </section>
 
     <!--<< Service Section Start >>-->
-    <section class="service-section fix section-padding pt-0">
+    <section class="service-section fix section-padding">
         <div class="container">
             <div class="section-title text-center">
                 <span class="wow fadeInUp">Service We Provide</span>
@@ -106,68 +106,27 @@
                     & Immigration Services
                 </h2>
             </div>
-        </div>
-        <div class="service-wrapper">
-            <div class="row">
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".2s">
-                    <div class="service-card-items">
-                        <h3><a href="{{ url('service-details') }}">Business Visa</a></h3>
-                        <p>
-                            Sit amet consectetur bestibulu ullamcorer arcustulla amet dolor tortor elementum
-                        </p>
-                        <div class="service-thumb">
-                            <img src="{{ asset('assets/img/service/01.jpg') }}" alt="img">
+            <div class="service-wrapper">
+                <div class="row">
+                    @foreach($services->take(4) as $index => $service)
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 wow fadeInUp"
+                            data-wow-delay="{{ 0.2 + (0.2 * $index) }}s">
+                            <div class="service-card-items {{ $service->is_featured ? 'active' : '' }}">
+                                <h3>
+                                    <a href="{{ route('service.show', $service->slug) }}">{{ $service->name }}</a>
+                                </h3>
+                                <p>{{ $service->short_text }}</p>
+                                <div class="service-thumb">
+                                    <img src="{{ $service->image ? asset('storage/' . $service->image) : asset('assets/img/service/default.jpg') }}"
+                                        alt="{{ $service->name }}">
+                                </div>
+                                <a href="{{ route('service.show', $service->slug) }}" class="link-btn">
+                                    <span>read more</span>
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </div>
                         </div>
-                        <a href="{{ url('service-details') }}" class="link-btn">
-                            <span>read more</span>
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".4s">
-                    <div class="service-card-items">
-                        <h3><a href="{{ url('service-details') }}">Student Visa</a></h3>
-                        <p>
-                            Sit amet consectetur bestibulu ullamcorer arcustulla amet dolor tortor elementum
-                        </p>
-                        <div class="service-thumb">
-                            <img src="{{ asset('assets/img/service/02.jpg') }}" alt="img">
-                        </div>
-                        <a href="{{ url('service-details') }}" class="link-btn">
-                            <span>read more</span>
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".6s">
-                    <div class="service-card-items active">
-                        <h3><a href="{{ url('service-details') }}">Work Visa</a></h3>
-                        <p>
-                            Sit amet consectetur bestibulu ullamcorer arcustulla amet dolor tortor elementum
-                        </p>
-                        <div class="service-thumb">
-                            <img src="{{ asset('assets/img/service/03.jpg') }}" alt="img">
-                        </div>
-                        <a href="{{ url('service-details') }}" class="link-btn">
-                            <span>read more</span>
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".8s">
-                    <div class="service-card-items">
-                        <h3><a href="{{ url('service-details') }}">Touriest Visa</a></h3>
-                        <p>
-                            Sit amet consectetur bestibulu ullamcorer arcustulla amet dolor tortor elementum
-                        </p>
-                        <div class="service-thumb">
-                            <img src="{{ asset('assets/img/service/04.jpg') }}" alt="img">
-                        </div>
-                        <a href="{{ url('service-details') }}" class="link-btn">
-                            <span>read more</span>
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -191,7 +150,8 @@
                                 Transmds is the world’s driving worldwide <br>
                                 exchange the worldwide trade of
                             </p>
-                            <a href="{{ url('service') }}" class="theme-btn bg-white mt-4 wow fadeInUp" data-wow-delay=".7s">
+                            <a href="{{ url('service') }}" class="theme-btn bg-white mt-4 wow fadeInUp"
+                                data-wow-delay=".7s">
                                 <span>
                                     Explore Our Service
                                     <i class="fas fa-chevron-right"></i>
@@ -266,93 +226,42 @@
                 </h2>
             </div>
             <div class="row align-items-center">
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                    <div class="single-team-items">
-                        <div class="team-image">
-                            <img src="{{ asset('assets/img/team/1.png') }}" alt="team-img">
-                            <div class="social-profile">
-                                <span class="plus-btn"><i class="fas fa-share-alt"></i></span>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
+                @foreach($teams->take(4) as $index => $team)
+                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="{{ 0.2 + (0.2 * $index) }}s">
+                        <div class="single-team-items">
+                            <div class="team-image">
+                                <img src="{{ $team->image ? asset('storage/' . $team->image) : asset('assets/img/team/1.png') }}"
+                                    alt="{{ $team->name }}">
+                                <div class="social-profile">
+                                    <span class="plus-btn"><i class="fas fa-share-alt"></i></span>
+                                    <ul>
+                                        @if($team->facebook)
+                                            <li><a href="{{ $team->facebook }}" target="_blank"><i
+                                                        class="fab fa-facebook-f"></i></a></li>
+                                        @endif
+                                        @if($team->twitter)
+                                            <li><a href="{{ $team->twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>
+                                            </li>
+                                        @endif
+                                        @if($team->linkedin)
+                                            <li><a href="{{ $team->linkedin }}" target="_blank"><i
+                                                        class="fab fa-linkedin-in"></i></a></li>
+                                        @endif
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="team-content text-center">
+                                <h5>
+                                    <a href="{{ route('teams.show', $team->slug) }}">{{ $team->name }}</a>
+                                </h5>
+                                <p>{{ $team->post }}</p>
                             </div>
                         </div>
-                        <div class="team-content text-center">
-                            <h5>
-                                <a href="{{ url('team-details') }}">****** ******</a>
-                            </h5>
-                            <p>CEO & Founder</p>
-                        </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-                    <div class="single-team-items">
-                        <div class="team-image">
-                            <img src="{{ asset('assets/img/team/1.png') }}" alt="team-img">
-                            <div class="social-profile">
-                                <span class="plus-btn"><i class="fas fa-share-alt"></i></span>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="team-content text-center">
-                            <h5>
-                                <a href="{{ url('team-details') }}">****** ******</a>
-                            </h5>
-                            <p>CEO & Founder</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
-                    <div class="single-team-items">
-                        <div class="team-image">
-                            <img src="{{ asset('assets/img/team/1.png') }}" alt="team-img">
-                            <div class="social-profile">
-                                <span class="plus-btn"><i class="fas fa-share-alt"></i></span>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="team-content text-center">
-                            <h5>
-                                <a href="{{ url('team-details') }}">****** ******</a>
-                            </h5>
-                            <p>CEO & Founder</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".8s">
-                    <div class="single-team-items">
-                        <div class="team-image">
-                            <img src="{{ asset('assets/img/team/1.png') }}" alt="team-img">
-                            <div class="social-profile">
-                                <span class="plus-btn"><i class="fas fa-share-alt"></i></span>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="team-content text-center">
-                            <h5>
-                                <a href="{{ url('team-details') }}">****** ******</a>
-                            </h5>
-                            <p>Consultant</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="team-button wow fadeInUp" data-wow-delay=".4s">
-                <a href="{{ url('team') }}" class="theme-btn mt-5 hover-white">
+                <a href="{{ url('/team') }}" class="theme-btn mt-5 hover-white">
                     <span>
                         Explore more team
                         <i class="fas fa-chevron-right"></i>
@@ -364,138 +273,30 @@
 
     <!--<< Testimonial Section Start >>-->
     <section class="testimonial-section-4 fix section-padding">
-        <div class="client-1">
-            <img src="{{ asset('assets/img/testimonial/08.png') }}" alt="img">
-        </div>
-        <div class="client-2">
-            <img src="{{ asset('assets/img/testimonial/09.png') }}" alt="img">
-        </div>
         <div class="container">
             <div class="testimonial-carousel-active-4">
-                <div class="testimonial-wrapper-4">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-11">
-                            <div class="testimonial-items">
-                                <div class="testimonial-image bg-cover"
-                                    style="background-image: url('{{ asset('assets/img/testimonial/1.png') }}');"></div>
-                                <div class="client-info">
-                                    <h5>
-                                        ****** ******
-                                    </h5>
-                                    <h6>****** ****** <span>****** ******</span></h6>
-                                </div>
-                                <div class="testimonial-content">
-                                    <h3>
-                                        “ The other hand we denounce with righteou indg ation and dislike
-                                        men who are so beguiled and demorali ed by the of pleasure of the
-                                        moment.Dislike men who are so beguiled and demoraliz worlds ed
-                                        by the charms of pleasure “
-                                    </h3>
-                                    <div class="star">
-                                        <span class="fas fa-star"></span>
-                                        <span class="fas fa-star"></span>
-                                        <span class="fas fa-star"></span>
-                                        <span class="fas fa-star"></span>
-                                        <span class="fas fa-star"></span>
+                @foreach($testimonials as $testimonial)
+                    <div class="testimonial-wrapper-4">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-11">
+                                <div class="testimonial-items">
+                                    <div class="testimonial-image bg-cover"
+                                        style="background-image: url('{{ $testimonial->image ? asset('storage/' . $testimonial->image) : asset('assets/img/testimonial/1.png') }}');">
+                                    </div>
+                                    <div class="client-info">
+                                        <h5>{{ $testimonial->name }}</h5>
+                                        <h6>{{ $testimonial->post }}</h6>
+                                    </div>
+                                    <div class="testimonial-content">
+                                        <h3>
+                                            “ {!! $testimonial->description !!} ”
+                                        </h3>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="testimonial-wrapper-4">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-11">
-                            <div class="testimonial-items">
-                                <div class="testimonial-image bg-cover"
-                                    style="background-image: url('{{ asset('assets/img/testimonial/1.png') }}');"></div>
-                                <div class="client-info">
-                                    <h5>
-                                        ****** ******
-                                    </h5>
-                                    <h6>****** ******<span>****** ******</span></h6>
-                                </div>
-                                <div class="testimonial-content">
-                                    <h3>
-                                        “ The other hand we denounce with righteou indg ation and dislike
-                                        men who are so beguiled and demorali ed by the of pleasure of the
-                                        moment.Dislike men who are so beguiled and demoraliz worlds ed
-                                        by the charms of pleasure “
-                                    </h3>
-                                    <div class="star">
-                                        <span class="fas fa-star"></span>
-                                        <span class="fas fa-star"></span>
-                                        <span class="fas fa-star"></span>
-                                        <span class="fas fa-star"></span>
-                                        <span class="fas fa-star"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-wrapper-4">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-11">
-                            <div class="testimonial-items">
-                                <div class="testimonial-image bg-cover"
-                                    style="background-image: url('{{ asset('assets/img/testimonial/1.png') }}');"></div>
-                                <div class="client-info">
-                                    <h5>
-                                        ****** ******
-                                    </h5>
-                                    <h6>****** ****** <span>****** ******</span></h6>
-                                </div>
-                                <div class="testimonial-content">
-                                    <h3>
-                                        “ The other hand we denounce with righteou indg ation and dislike
-                                        men who are so beguiled and demorali ed by the of pleasure of the
-                                        moment.Dislike men who are so beguiled and demoraliz worlds ed
-                                        by the charms of pleasure “
-                                    </h3>
-                                    <div class="star">
-                                        <span class="fas fa-star"></span>
-                                        <span class="fas fa-star"></span>
-                                        <span class="fas fa-star"></span>
-                                        <span class="fas fa-star"></span>
-                                        <span class="fas fa-star"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-wrapper-4">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-11">
-                            <div class="testimonial-items">
-                                <div class="testimonial-image bg-cover"
-                                    style="background-image: url('{{ asset('assets/img/testimonial/1.png') }}');"></div>
-                                <div class="client-info">
-                                    <h5>
-                                        ****** ******
-                                    </h5>
-                                    <h6>****** ****** <span>****** ******</span></h6>
-                                </div>
-                                <div class="testimonial-content">
-                                    <h3>
-                                        “ The other hand we denounce with righteou indg ation and dislike
-                                        men who are so beguiled and demorali ed by the of pleasure of the
-                                        moment.Dislike men who are so beguiled and demoraliz worlds ed
-                                        by the charms of pleasure “
-                                    </h3>
-                                    <div class="star">
-                                        <span class="fas fa-star"></span>
-                                        <span class="fas fa-star"></span>
-                                        <span class="fas fa-star"></span>
-                                        <span class="fas fa-star"></span>
-                                        <span class="fas fa-star"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
         <div class="slider-button">

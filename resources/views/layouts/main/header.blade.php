@@ -9,34 +9,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="modinatheme">
     <meta name="description" content="Immigration and Visa Consulting Html Template">
+    <!-- Use null coalescing operator to handle null meta_keywords -->
+    <meta name="keywords" content="{{ $siteSetting->meta_keywords ?? '' }}">
     <!-- ======== Page title ============ -->
     <title>RisingPath - Immigration & Visa Consulting HTML Template</title>
-    <!--<< Favcion >>-->
-    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.svg') }}">
+    <!--<< Favicon >>-->
+    <link rel="shortcut icon"
+        href="{{ optional($siteSetting)->favicon ? asset('storage/' . $siteSetting->favicon) : asset('/assets/img/favicon.svg') }}">
     <!--<< Bootstrap min.css >>-->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}">
     <!--<< Font Awesome.css >>-->
-    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/font-awesome.css') }}">
     <!--<< Animate.css >>-->
-    <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/animate.css') }}">
     <!--<< Magnific Popup.css >>-->
-    <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/magnific-popup.css') }}">
     <!--<< MeanMenu.css >>-->
-    <link rel="stylesheet" href="{{ asset('assets/css/meanmenu.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/meanmenu.css') }}">
     <!--<< Slick.css >>-->
-    <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/slick.css') }}">
     <!--<< Swiper Slider.css >>-->
-    <link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/swiper-bundle.min.css') }}">
     <!--<< Nice Select.css >>-->
-    <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/nice-select.css') }}">
     <!--<< Main.css >>-->
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/main.css') }}">
     <!--<< Style.css >>-->
-    <link rel="stylesheet" href="{{ asset('style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/style.css') }}">
 </head>
 
 <body>
-
     <!-- Back To Top Start -->
     <div class="scroll-up">
         <svg class="scroll-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
@@ -47,39 +49,18 @@
     <!-- Preloader Start -->
     <div id="preloader" class="preloader">
         <div class="animation-preloader">
-            <div class="spinner">
-            </div>
+            <div class="spinner"></div>
             <div class="txt-loading">
-                <span data-text-preloader="R" class="letters-loading">
-                    R
-                </span>
-                <span data-text-preloader="I" class="letters-loading">
-                    I
-                </span>
-                <span data-text-preloader="S" class="letters-loading">
-                    S
-                </span>
-                <span data-text-preloader="I" class="letters-loading">
-                    I
-                </span>
-                <span data-text-preloader="N" class="letters-loading">
-                    N
-                </span>
-                <span data-text-preloader="G" class="letters-loading">
-                    G
-                </span>
-                <span data-text-preloader="P" class="letters-loading">
-                    P
-                </span>
-                <span data-text-preloader="A" class="letters-loading">
-                    A
-                </span>
-                <span data-text-preloader="T" class="letters-loading">
-                    T
-                </span>
-                <span data-text-preloader="H" class="letters-loading">
-                    H
-                </span>
+                <span data-text-preloader="R" class="letters-loading">R</span>
+                <span data-text-preloader="I" class="letters-loading">I</span>
+                <span data-text-preloader="S" class="letters-loading">S</span>
+                <span data-text-preloader="I" class="letters-loading">I</span>
+                <span data-text-preloader="N" class="letters-loading">N</span>
+                <span data-text-preloader="G" class="letters-loading">G</span>
+                <span data-text-preloader="P" class="letters-loading">P</span>
+                <span data-text-preloader="A" class="letters-loading">A</span>
+                <span data-text-preloader="T" class="letters-loading">T</span>
+                <span data-text-preloader="H" class="letters-loading">H</span>
             </div>
             <p class="text-center">Loading</p>
         </div>
@@ -113,13 +94,12 @@
                     <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
                         <div class="offcanvas__logo">
                             <a href="/">
-                                <img src="{{ asset('assets/img/logo/logo.svg') }}" alt="logo-img">
+                                <img src="{{ optional($siteSetting)->site_logo ? asset('storage/' . $siteSetting->site_logo) : asset('assets/img/logo/logo.svg') }}"
+                                    alt="logo-img">
                             </a>
                         </div>
                         <div class="offcanvas__close">
-                            <button>
-                                <i class="fas fa-times"></i>
-                            </button>
+                            <button><i class="fas fa-times"></i></button>
                         </div>
                     </div>
 
@@ -128,49 +108,59 @@
                         <h4>Contact Info</h4>
                         <ul>
                             <li class="d-flex align-items-center">
-                                <div class="offcanvas__contact-icon">
-                                    <i class="fal fa-map-marker-alt"></i>
-                                </div>
+                                <div class="offcanvas__contact-icon"><i class="fal fa-map-marker-alt"></i></div>
                                 <div class="offcanvas__contact-text">
-                                    <a target="_blank" href="#">Kathmandu, Nepal</a>
+                                    <a target="_blank" href="#">{{ optional($siteSetting)->location ?? '' }}</a>
                                 </div>
                             </li>
-                            <li class="d-flex align-items-center">
-                                <div class="offcanvas__contact-icon mr-15">
-                                    <i class="fal fa-envelope"></i>
-                                </div>
-                                <div class="offcanvas__contact-text">
-                                    <a><span
-                                            class="mailto:info@risingpathedu.com"><span>info@risingpathedu.com</span></span></a>
-                                </div>
-                            </li>
-                            <li class="d-flex align-items-center">
-                                <div class="offcanvas__contact-icon mr-15">
-                                    <i class="fal fa-clock"></i>
-                                </div>
-                                <div class="offcanvas__contact-text">
-                                    <a target="_blank" href="#">Mod-friday, 09am -05pm</a>
-                                </div>
-                            </li>
-                            <li class="d-flex align-items-center">
-                                <div class="offcanvas__contact-icon mr-15">
-                                    <i class="far fa-phone"></i>
-                                </div>
-                                <div class="offcanvas__contact-text">
-                                    <a href="tel:+977 9849720101">+977 9849720101</a>
-                                </div>
-                            </li>
+                            @if(!empty(optional($siteSetting)->email))
+                                <li class="d-flex align-items-center">
+                                    <div class="offcanvas__contact-icon mr-15"><i class="fal fa-envelope"></i></div>
+                                    <div class="offcanvas__contact-text">
+                                        <a href="mailto:{{ optional($siteSetting)->email ?? '' }}"
+                                            class="link">{{ optional($siteSetting)->email ?? '' }}</a>
+                                    </div>
+                                </li>
+                            @endif
+                            @if(!empty(optional($siteSetting)->business_hours))
+                                <li class="d-flex align-items-center">
+                                    <div class="offcanvas__contact-icon mr-15"><i class="fal fa-clock"></i></div>
+                                    <div class="offcanvas__contact-text">
+                                        <a target="_blank" href="#">{{ optional($siteSetting)->business_hours ?? '' }}</a>
+                                    </div>
+                                </li>
+                            @endif
+                            @if(!empty(optional($siteSetting)->contact_number))
+                                <li class="d-flex align-items-center">
+                                    <div class="offcanvas__contact-icon mr-15"><i class="far fa-phone"></i></div>
+                                    <div class="offcanvas__contact-text">
+                                        <a
+                                            href="tel:{{ optional($siteSetting)->contact_number ?? '' }}">{{ optional($siteSetting)->contact_number ?? '' }}</a>
+                                    </div>
+                                </li>
+                            @endif
                         </ul>
                         <div class="header-button mt-4">
-                            <a href="contact.html" class="theme-btn text-center">
+                            <a href="/contact" class="theme-btn text-center">
                                 <span>Contact Us<i class="fas fa-chevron-right"></i></span>
                             </a>
                         </div>
                         <div class="social-icon d-flex align-items-center">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-youtube"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            @if(!empty(optional($siteSetting)->facebook))
+                                <a href="{{ optional($siteSetting)->facebook }}"><i class="fab fa-facebook-f"></i></a>
+                            @endif
+                            @if(!empty(optional($siteSetting)->twitter))
+                                <a href="{{ optional($siteSetting)->twitter }}"><i class="fab fa-twitter"></i></a>
+                            @endif
+                            @if(!empty(optional($siteSetting)->youtube))
+                                <a href="{{ optional($siteSetting)->youtube }}"><i class="fab fa-youtube"></i></a>
+                            @endif
+                            @if(!empty(optional($siteSetting)->linkedin))
+                                <a href="{{ optional($siteSetting)->linkedin }}"><i class="fab fa-linkedin-in"></i></a>
+                            @endif
+                            @if(!empty(optional($siteSetting)->instagram))
+                                <a href="{{ optional($siteSetting)->instagram }}"><i class="fab fa-instagram"></i></a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -184,38 +174,42 @@
         <div class="container">
             <div class="header-top-wrapper">
                 <ul class="contact-list">
-                    <li>
-                        <i class="far fa-envelope"></i>
-                        <a href="mailto:info@risingpathedu.com" class="link">info@risingpathedu.com</a>
-                    </li>
-                    <li>
-                        <i class="fas fa-map-marker-alt"></i>
-                        Kathmandu, Nepal,
-                    </li>
+                    @if(!empty(optional($siteSetting)->email))
+                        <li>
+                            <i class="far fa-envelope"></i>
+                            <a href="mailto:{{ optional($siteSetting)->email ?? '' }}"
+                                class="link">{{ optional($siteSetting)->email ?? '' }}</a>
+                        </li>
+                    @endif
+                    @if(!empty(optional($siteSetting)->location))
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            {{ optional($siteSetting)->location ?? '' }}
+                        </li>
+                    @endif
                 </ul>
                 <div class="top-right">
                     <div class="social-icon d-flex align-items-center">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-vimeo-v"></i></a>
-                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        @if(!empty(optional($siteSetting)->facebook))
+                            <a href="{{ optional($siteSetting)->facebook }}"><i class="fab fa-facebook-f"></i></a>
+                        @endif
+                        @if(!empty(optional($siteSetting)->twitter))
+                            <a href="{{ optional($siteSetting)->twitter }}"><i class="fab fa-twitter"></i></a>
+                        @endif
+                        @if(!empty(optional($siteSetting)->youtube))
+                            <a href="{{ optional($siteSetting)->youtube }}"><i class="fab fa-youtube"></i></a>
+                        @endif
+                        @if(!empty(optional($siteSetting)->linkedin))
+                            <a href="{{ optional($siteSetting)->linkedin }}"><i class="fab fa-linkedin-in"></i></a>
+                        @endif
+                        @if(!empty(optional($siteSetting)->instagram))
+                            <a href="{{ optional($siteSetting)->instagram }}"><i class="fab fa-instagram"></i></a>
+                        @endif
                     </div>
                     <ul class="header-menu">
-                        <li>
-                            <a href="/contact">
-                                Help
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/contact">
-                                Support
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/faq">
-                                Faqs
-                            </a>
-                        </li>
+                        <li><a href="/contact">Help</a></li>
+                        <li><a href="/contact">Support</a></li>
+                        <li><a href="/faq">Faqs</a></li>
                     </ul>
                 </div>
             </div>
@@ -231,7 +225,8 @@
                         <div class="header-left">
                             <div class="logo" style="height: 4rem; width: 16rem;">
                                 <a href="/" class="header-logo">
-                                    <img src="{{ asset('assets/img/logo/logo.svg') }}" alt="logo-img">
+                                    <img src="{{ optional($siteSetting)->site_logo ? asset('storage/' . $siteSetting->site_logo) : asset('assets/img/logo/logo.svg') }}"
+                                        alt="logo-img">
                                 </a>
                             </div>
                             <div class="mean__menu-wrapper">
@@ -239,47 +234,33 @@
                                     <nav id="mobile-menu">
                                         <ul>
                                             <li class="has-dropdown active menu-thumb">
-                                                <a href="/">
-                                                    Home
-                                                </a>
-
+                                                <a href="/">Home</a>
                                             </li>
-                                            <li>
-                                                <a href="/about">About</a>
-                                            </li>
-                                            <li>
-                                                <a href="/news">
-                                                    Blog
-                                                </a>
-
-                                            </li>
-                                            <li>
-                                                <a href="/service">Visa
-                                                </a>
-
-                                            </li>
-                                            <li>
-                                                <a href="/contact">Contact</a>
-                                            </li>
+                                            <li><a href="/about">About</a></li>
+                                            <li><a href="/news">Blog</a></li>
+                                            <li><a href="/service">Visa</a></li>
+                                            <li><a href="/contact">Contact</a></li>
                                         </ul>
                                     </nav>
                                 </div>
                             </div>
                         </div>
                         <div class="header-right d-flex justify-content-end align-items-center">
-                            <div class="contact-info">
-                                <div class="icon">
-                                    <img src="{{ asset('assets/img/call.png') }}" alt="img">
+                            @if(!empty(optional($siteSetting)->contact_number))
+                                <div class="contact-info">
+                                    <div class="icon">
+                                        <img src="{{ asset('assets/img/call.png') }}" alt="img">
+                                    </div>
+                                    <div class="content">
+                                        <p>Phone:</p>
+                                        <h6><a
+                                                href="tel:{{ optional($siteSetting)->contact_number ?? '' }}">{{ optional($siteSetting)->contact_number ?? '' }}</a>
+                                        </h6>
+                                    </div>
                                 </div>
-                                <div class="content">
-                                    <p>Phone:</p>
-                                    <h6>
-                                        <a href="tel:+23645689622">+977 9849720101</a>
-                                    </h6>
-                                </div>
-                            </div>
+                            @endif
                             <div class="header-button">
-                                <a href="contact.html" class="link-btn">
+                                <a href="/contact" class="link-btn">
                                     <span>Get A Quote</span>
                                     <i class="fas fa-chevron-right"></i>
                                 </a>
