@@ -30,48 +30,49 @@
                                 doloremque laudantium, totam rem aperiam, eaque inventore
                             </p>
                             <div class="row g-4 mt-3">
-                                <div class="col-lg-6 wow fadeInUp" data-wow-delay=".3s">
-                                    <div class="info-items">
-                                        <div class="icon">
-                                            <i class="fas fa-map-marker-alt"></i>
-                                        </div>
-                                        <div class="content">
-                                            <h5>Location</h5>
-                                            <p>
-                                                {{ optional($siteSetting)->location ?? '' }}
-                                            </p>
+                                @if(!empty(optional($siteSetting)->location))
+                                    <div class="col-lg-6 wow fadeInUp" data-wow-delay=".3s">
+                                        <div class="info-items">
+                                            <div class="icon">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                            </div>
+                                            <div class="content">
+                                                <h5>Location</h5>
+                                                <p>
+                                                    {{ optional($siteSetting)->location ?? '' }}
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-6 wow fadeInUp" data-wow-delay=".5s">
-                                    <div class="info-items">
-                                        <div class="icon">
-                                            <i class="far fa-phone"></i>
-                                        </div>
-                                        <div class="content">
-                                            <h5>Phone</h5>
-                                            <a href="tel:+09354587874">01 ******* </a> <br>
-                                            @if(!empty(optional($siteSetting)->contact_number))
+                                @endif
+                                @if(!empty(optional($siteSetting)->contact_number))
+                                    <div class="col-lg-6 wow fadeInUp" data-wow-delay=".5s">
+                                        <div class="info-items">
+                                            <div class="icon">
+                                                <i class="far fa-phone"></i>
+                                            </div>
+                                            <div class="content">
+                                                <h5>Phone</h5>
                                                 <a
                                                     href="tel:{{ optional($siteSetting)->contact_number ?? '' }}">{{ optional($siteSetting)->contact_number ?? '' }}</a>
-                                            @endif
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-6 wow fadeInUp" data-wow-delay=".7s">
-                                    <div class="info-items">
-                                        <div class="icon">
-                                            <i class="fal fa-envelope"></i>
-                                        </div>
-                                        <div class="content">
-                                            <h5>Email</h5>
-                                            @if(!empty(optional($siteSetting)->email))
+                                @endif
+                                @if(!empty(optional($siteSetting)->email))
+                                    <div class="col-lg-6 wow fadeInUp" data-wow-delay=".7s">
+                                        <div class="info-items">
+                                            <div class="icon">
+                                                <i class="fal fa-envelope"></i>
+                                            </div>
+                                            <div class="content">
+                                                <h5>Email</h5>
                                                 <a
                                                     href="mailto:{{ optional($siteSetting)->email }}">{{ optional($siteSetting)->email }}</a>
-                                            @endif
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endif
                                 <div class="col-lg-6 wow fadeInUp" data-wow-delay=".9s">
                                     <div class="info-items">
                                         <div class="icon">
