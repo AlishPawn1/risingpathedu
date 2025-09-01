@@ -38,7 +38,8 @@
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title fw-bold">Settings</h5>
                                 <p class="card-text text-muted small">Configure your application</p>
-                                <a href="{{ route('admin.about.edit') }}" class="btn btn-purple">Edit Settings</a>
+                                <a href="#" class="btn btn-purple">Edit Settings</a>
+                                <!-- <a href="{{ route('admin.about.edit') }}" class="btn btn-purple">Edit Settings</a> -->
                             </div>
                         </div>
                     </div>

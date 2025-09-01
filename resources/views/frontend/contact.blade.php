@@ -1,5 +1,6 @@
 @extends('layouts.main.app')
 
+@props(['formType' => 'middle'])
 @section('content')
 
     <!--<< Breadcrumb Section Start >>-->
@@ -37,8 +38,7 @@
                                         <div class="content">
                                             <h5>Location</h5>
                                             <p>
-                                                Kathmandu, Nepal, <br>
-                                                Melbourne, Australia
+                                                {{ optional($siteSetting)->location ?? '' }}
                                             </p>
                                         </div>
                                     </div>
@@ -51,7 +51,10 @@
                                         <div class="content">
                                             <h5>Phone</h5>
                                             <a href="tel:+09354587874">01 ******* </a> <br>
-                                            <a href="tel:+01368567894">+977 9849720101</a>
+                                            @if(!empty(optional($siteSetting)->contact_number))
+                                                <a
+                                                    href="tel:{{ optional($siteSetting)->contact_number ?? '' }}">{{ optional($siteSetting)->contact_number ?? '' }}</a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -62,13 +65,10 @@
                                         </div>
                                         <div class="content">
                                             <h5>Email</h5>
-                                            <a href="https://modinatheme.com/cdn-cgi/l/email-protection#1970777f76597c61787469757c377a7674"
-                                                class="link"><span class="__cf_email__"
-                                                    data-cfemail="4f262129200f2a372e223f232a612c2022">[info@risingpathedu.com]</span></a>
-                                            <br>
-                                            <a href="https://modinatheme.com/cdn-cgi/l/email-protection#4e272028210e2b362f233e222b602d2123"
-                                                class="link"><span class="__cf_email__"
-                                                    data-cfemail="abc2c5cdc4ebced3cac6dbc7ce85c8c4c6">[info@risingpathedu.com]</span></a>
+                                            @if(!empty(optional($siteSetting)->email))
+                                                <a
+                                                    href="mailto:{{ optional($siteSetting)->email }}">{{ optional($siteSetting)->email }}</a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -80,10 +80,26 @@
                                         <div class="content">
                                             <h5>Social</h5>
                                             <div class="social-icon d-flex align-items-center">
-                                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                                <a href="#"><i class="fab fa-vimeo-v"></i></a>
-                                                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                                                @if(!empty(optional($siteSetting)->facebook))
+                                                    <a href="{{ optional($siteSetting)->facebook }}" target="_blank"><i
+                                                            class="fab fa-facebook-f"></i></a>
+                                                @endif
+                                                @if(!empty(optional($siteSetting)->twitter))
+                                                    <a href="{{ optional($siteSetting)->twitter }}" target="_blank"><i
+                                                            class="fab fa-twitter"></i></a>
+                                                @endif
+                                                @if(!empty(optional($siteSetting)->youtube))
+                                                    <a href="{{ optional($siteSetting)->youtube }}" target="_blank"><i
+                                                            class="fab fa-youtube"></i></a>
+                                                @endif
+                                                @if(!empty(optional($siteSetting)->linkedin))
+                                                    <a href="{{ optional($siteSetting)->linkedin }}" target="_blank"><i
+                                                            class="fab fa-linkedin-in"></i></a>
+                                                @endif
+                                                @if(!empty(optional($siteSetting)->instagram))
+                                                    <a href="{{ optional($siteSetting)->instagram }}" target="_blank"><i
+                                                            class="fab fa-instagram"></i></a>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -101,39 +117,31 @@
                                 <p class="wow fadeInUp" data-wow-delay=".5s">Your email address will not be published.
                                     Required fields are marked *</p>
                             </div>
-                            <form action="https://modinatheme.com/html/RisingPath-html/contact.php" id="contact-form"
-                                method="POST">
-                                <div class="row g-4">
-                                    <div class="col-lg-12 wow fadeInUp" data-wow-delay=".3s">
-                                        <div class="form-clt">
-                                            <input type="text" name="name" id="name" placeholder="Your Name*">
-                                            <div class="icon">
-                                                <i class="fal fa-user"></i>
-                                            </div>
-                                        </div>
+                            <form action="{{ route('contact.store') }}" method="POST" id="contact-form" class="row g-4">
+                                @csrf
+                                <div class="col-lg-12 wow fadeInUp" data-wow-delay=".3s">
+                                    <div class="form-clt">
+                                        <input type="text" name="name" id="name" placeholder="Your Name*" required>
+                                        <div class="icon"><i class="fal fa-user"></i></div>
                                     </div>
-                                    <div class="col-lg-12 wow fadeInUp" data-wow-delay=".5s">
-                                        <div class="form-clt">
-                                            <input type="text" name="email" id="email" placeholder="Email Address*">
-                                            <div class="icon">
-                                                <i class="fal fa-envelope"></i>
-                                            </div>
-                                        </div>
+                                </div>
+                                <div class="col-lg-12 wow fadeInUp" data-wow-delay=".5s">
+                                    <div class="form-clt">
+                                        <input type="email" name="email" id="email" placeholder="Email Address*" required>
+                                        <div class="icon"><i class="fal fa-envelope"></i></div>
                                     </div>
-                                    <div class="col-lg-12 wow fadeInUp" data-wow-delay=".7s">
-                                        <div class="form-clt">
-                                            <textarea name="message" id="message"
-                                                placeholder="Enter Your Messege here"></textarea>
-                                            <div class="icon">
-                                                <i class="fal fa-edit"></i>
-                                            </div>
-                                        </div>
+                                </div>
+                                <div class="col-lg-12 wow fadeInUp" data-wow-delay=".7s">
+                                    <div class="form-clt">
+                                        <textarea name="message" id="message" placeholder="Enter Your Messege here"
+                                            required></textarea>
+                                        <div class="icon"><i class="fal fa-edit"></i></div>
                                     </div>
-                                    <div class="col-lg-6 wow fadeInUp" data-wow-delay=".8s">
-                                        <button type="submit" class="theme-btn">
-                                            <span><i class="fal fa-paper-plane"></i>Get In Touch</span>
-                                        </button>
-                                    </div>
+                                </div>
+                                <div class="col-lg-6 wow fadeInUp" data-wow-delay=".8s">
+                                    <button type="submit" class="theme-btn">
+                                        <span><i class="fal fa-paper-plane"></i>Get In Touch</span>
+                                    </button>
                                 </div>
                             </form>
                         </div>

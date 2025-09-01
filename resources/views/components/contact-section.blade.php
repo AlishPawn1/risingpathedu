@@ -1,3 +1,5 @@
+@props(['formType' => 'extended'])
+
 <section class="contact-section-one fix">
     <div class="container">
         <div class="contact-wrapper">
@@ -14,58 +16,44 @@
                             <span class="text-white wow fadeInUp">Contact us</span>
                             <h2 class="text-white title-anim">Get a Call Back</h2>
                         </div>
-                        <form action="#" id="contact-form" method="POST" class="mt-4 mt-md-0">
+                        {{-- Contact Form --}}
+                        <form action="{{ route('contact.store') }}" id="contact-form" method="POST" class="mt-4 mt-md-0">
+                            @csrf
                             <div class="row g-3">
                                 <div class="col-lg-6 wow fadeInUp" data-wow-delay=".3s">
                                     <div class="form-clt">
-                                        <input type="text" name="name" id="name" placeholder="First Name">
+                                        <input type="text" name="name" id="name" placeholder="First Name" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 wow fadeInUp" data-wow-delay=".3s">
                                     <div class="form-clt">
-                                        <input type="text" name="email" id="email" placeholder="Email Address">
+                                        <input type="email" name="email" id="email" placeholder="Email Address" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 wow fadeInUp" data-wow-delay=".5s">
                                     <div class="form-clt">
-                                        <input type="text" name="phone" id="phone" placeholder="Phone Number">
+                                        <input type="text" name="phone" id="phone" placeholder="Phone Number" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 wow fadeInUp" data-wow-delay=".5s">
                                     <div class="form-clt">
-                                        <div class="nice-select open" tabindex="0">
-                                            <span class="current">
-                                                Choose Services
-                                            </span>
-                                            <ul class="list">
-                                                <li data-value="1" class="option selected focus">
-                                                    Default sorting
-                                                </li>
-                                                <li data-value="1" class="option">
-                                                    Sort by popularity
-                                                </li>
-                                                <li data-value="1" class="option">
-                                                    Sort by average rating
-                                                </li>
-                                                <li data-value="1" class="option">
-                                                    Sort by latest
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        <select name="service" class="form-select">
+                                            <option value="">Choose Services</option>
+                                            <option value="Default sorting">Default sorting</option>
+                                            <option value="Sort by popularity">Sort by popularity</option>
+                                            <option value="Sort by average rating">Sort by average rating</option>
+                                            <option value="Sort by latest">Sort by latest</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 wow fadeInUp" data-wow-delay=".3s">
                                     <div class="form-clt">
-                                        <textarea name="message" id="message"
-                                            placeholder="Write Your Message"></textarea>
+                                        <textarea name="message" id="message" placeholder="Write Your Message" required></textarea>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 wow fadeInUp" data-wow-delay=".5s">
                                     <button type="submit" class="theme-btn">
-                                        <span>
-                                            Send Us Messages
-                                            <i class="fas fa-chevron-right"></i>
-                                        </span>
+                                        <span>Send Us Messages <i class="fas fa-chevron-right"></i></span>
                                     </button>
                                 </div>
                             </div>

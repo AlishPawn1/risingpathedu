@@ -11,11 +11,9 @@ class Faq extends Model
 
     protected $fillable = [
         'service_id',
-        'faq_category_id',
+        'category_id',
         'title',
         'description',
-        'meta_title',
-        'meta_description',
     ];
 
     public function service()
@@ -25,6 +23,6 @@ class Faq extends Model
 
     public function category()
     {
-        return $this->belongsTo(FaqCategory::class, 'faq_category_id');
+        return $this->belongsTo(FaqCategory::class, 'category_id');
     }
 }

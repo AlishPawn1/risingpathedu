@@ -87,7 +87,7 @@
                 </div>
                 @if ($services->hasPages())
                     <div class="mt-4">
-                        {{ $services->links('pagination::bootstrap-5') }}
+                        {{ $services->links('vendor.pagination.custom') }}
                     </div>
                 @endif
             </div>

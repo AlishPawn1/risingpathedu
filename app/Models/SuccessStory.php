@@ -3,24 +3,29 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class SuccessStory extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
-        'student_name','country_id','service_id','title','university','intake',
-        'visa_approved','image','summary','testimonial','is_published','published_at'
+        'title',
+        'slug',
+        'student_name',
+        'country',
+        'service',
+        'university',
+        'intake',
+        'visa_approved',
+        'image',
+        'summary',
+        'testimonial',
+        'is_published'
     ];
 
     protected $casts = [
         'visa_approved' => 'boolean',
-        'is_published'  => 'boolean',
-        'published_at'  => 'datetime',
+        'is_published' => 'boolean',
     ];
-
-    public function country() { return $this->belongsTo(Country::class); }
-    public function service() { return $this->belongsTo(Service::class); }
 }

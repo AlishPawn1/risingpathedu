@@ -1,5 +1,7 @@
 @extends('layouts.main.app')
 
+@props(['formType' => 'simple'])
+
 @section('content')
 
     <!--<< Breadcrumb Section Start >>-->
@@ -54,7 +56,8 @@
                                             @if($country->media_type === 'image')
                                                 <img src="{{ asset('storage/' . $country->media_url) }}" alt="img">
                                             @elseif($country->media_type === 'video')
-                                                <img src="{{ asset('storage/' . $country->image) }}" alt="Video Thumbnail" class="img-thumbnail mb-2">
+                                                <img src="{{ asset('storage/' . $country->image) }}" alt="Video Thumbnail"
+                                                    class="img-thumbnail mb-2">
                                                 <div class="video-box">
                                                     <a href="{{ $country->media_url }}" class="video-btn ripple video-popup">
                                                         <i class="fas fa-play"></i>
@@ -70,22 +73,20 @@
                     <div class="col-lg-4">
                         <div class="country-sidebar">
                             <div class="single-contact-form">
-                                <h3 class="wid-title">
-                                    Quick Contact
-                                </h3>
-                                <form action="#" id="contact-form" class="message-form">
+                                <h3 class="wid-title">Quick Contact</h3>
+                                <form action="{{ route('contact.store') }}" method="POST" id="contact-form"
+                                    class="message-form">
+                                    @csrf
                                     <div class="single-form-input">
-                                        <input type="text" placeholder="your name">
+                                        <input type="text" name="name" placeholder="your name" required>
                                     </div>
                                     <div class="single-form-input">
-                                        <input type="email" placeholder="email address">
+                                        <input type="email" name="email" placeholder="email address" required>
                                     </div>
                                     <div class="single-form-input">
-                                        <textarea placeholder="message"></textarea>
+                                        <textarea name="message" placeholder="message" required></textarea>
                                     </div>
-                                    <button class="theme-btn" type="submit">
-                                        <span>Submit</span>
-                                    </button>
+                                    <button class="theme-btn" type="submit"><span>Submit</span></button>
                                 </form>
                             </div>
                             <div class="country-sidebar-widget">

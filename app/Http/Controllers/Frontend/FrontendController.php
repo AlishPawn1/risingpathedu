@@ -15,11 +15,11 @@ class FrontendController extends Controller
     // Homepage
     public function index()
     {
-        $services = Service::latest()->get();
-        $countries = Country::latest()->get();
-        $blogs = Blog::latest()->get();
-        $teams = Team::latest()->get();
-        $testimonials = Testimonials::latest()->get();
+        $services = Service::latest()->take(10)->get();
+        $countries = Country::latest()->take(10)->get();
+        $blogs = Blog::latest()->take(10)->get();
+        $teams = Team::latest()->take(10)->get();
+        $testimonials = Testimonials::latest()->take(10)->get();
 
         return view('frontend.index', compact('services', 'countries', 'blogs', 'teams', 'testimonials'));
     }

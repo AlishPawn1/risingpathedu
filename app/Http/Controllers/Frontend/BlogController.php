@@ -28,8 +28,8 @@ class BlogController extends Controller
         $tags = Tag::all();
         $blogs = $query->latest()->paginate(10);
 
-        // return view('frontend.news', compact('blogs', 'categories', 'tags', 'popularBlogs'));
-        return view('frontend.news-grid', compact('blogs', 'popularBlogs', 'categories', 'tags'));
+        return view('frontend.news', compact('blogs', 'categories', 'tags', 'popularBlogs'));
+        // return view('frontend.news-grid', compact('blogs', 'popularBlogs', 'categories', 'tags'));
     }
     public function show($slug)
     {

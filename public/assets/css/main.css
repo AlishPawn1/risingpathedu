@@ -11163,3 +11163,51 @@ p.sticky-label {
 .pagination .page-item .page-link {
     color: #000;
 }
+
+.content-wrap {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.story-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 0.375rem;
+}
+.story-details .card {
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.story-details .card-body {
+  padding: 2rem;
+}
+.story-details h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+.story-details h3 {
+  font-size: 1.25rem;
+  color: #6c757d;
+}
+.story-details .badge {
+  font-size: 0.85rem;
+}
+.detail-label {
+  font-weight: bold;
+  color: #343a40;
+}
+.testimonial {
+  background-color: #f1f3f5;
+  padding: 1.5rem;
+  border-radius: 0.375rem;
+  font-style: italic;
+  color: #495057;
+}
+.back-link {
+  font-size: 1rem;
+  color: #007bff;
+  text-decoration: none;
+}
+.back-link:hover {
+  text-decoration: underline;
+}

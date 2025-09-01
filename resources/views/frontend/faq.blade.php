@@ -37,8 +37,8 @@
                         <div class="single-tab-items">
                             <ul class="nav mb-4" role="tablist">
                                 @foreach($faqsTabs as $tab)
-                                    <li class="nav-item wow fadeInUp" data-wow-delay="{{ $tab['delay'] }}" role="presentation">
-                                        <a href="#{{ $tab['slug'] }}" data-bs-toggle="tab"
+                                    <li class="nav-item wow fadeInUp" role="presentation">
+                                        <a href="#{{ $tab['title'] }}" data-bs-toggle="tab"
                                             class="nav-link {{ $loop->first ? 'active' : '' }}"
                                             aria-selected="{{ $loop->first ? 'true' : 'false' }}" role="tab">
                                             {{ $tab['title'] }}
@@ -48,29 +48,28 @@
                             </ul>
                             <div class="tab-content">
                                 @foreach($faqsTabs as $tab)
-                                    <div id="{{ $tab['slug'] }}" class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
+                                    <div id="{{ $tab['title'] }}" class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
                                         role="tabpanel">
                                         <div class="faq-content">
                                             <div class="faq-accordion">
-                                                <div class="accordion" id="accordion{{ $tab['slug'] }}">
+                                                <div class="accordion" id="accordion{{ $tab['title'] }}">
                                                     @foreach($tab['faqs'] as $faq)
-                                                        <div class="accordion-item wow fadeInUp"
-                                                            data-wow-delay="{{ $faq['delay'] }}">
+                                                        <div class="accordion-item wow fadeInUp">
                                                             <h4 class="accordion-header">
                                                                 <button
                                                                     class="accordion-button {{ !$loop->first ? 'collapsed' : '' }}"
                                                                     type="button" data-bs-toggle="collapse"
-                                                                    data-bs-target="#faq{{ $tab['slug'] }}{{ $loop->index }}"
+                                                                    data-bs-target="#faq{{ $tab['title'] }}{{ $loop->index }}"
                                                                     aria-expanded="{{ $loop->first ? 'true' : 'false' }}"
-                                                                    aria-controls="faq{{ $tab['slug'] }}{{ $loop->index }}">
-                                                                    {{ $faq['question'] }}
+                                                                    aria-controls="faq{{ $tab['title'] }}{{ $loop->index }}">
+                                                                    {{ $faq['title'] }}
                                                                 </button>
                                                             </h4>
-                                                            <div id="faq{{ $tab['slug'] }}{{ $loop->index }}"
+                                                            <div id="faq{{ $tab['title'] }}{{ $loop->index }}"
                                                                 class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}"
-                                                                data-bs-parent="#accordion{{ $tab['slug'] }}">
+                                                                data-bs-parent="#accordion{{ $tab['title'] }}">
                                                                 <div class="accordion-body">
-                                                                    {{ $faq['answer'] }}
+                                                                    {!! $faq['description'] !!}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -154,70 +153,25 @@
                         <div class="faq-content style-2 style-color">
                             <div class="faq-accordion">
                                 <div class="accordion" id="accordions">
-                                    <div class="accordion-item wow fadeInUp" data-wow-delay=".3s">
-                                        <h4 class="accordion-header">
-                                            <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#faq133" aria-expanded="false"
-                                                aria-controls="faq133">
-                                                How to learn digital marketing?
-                                            </button>
-                                        </h4>
-                                        <div id="faq133" class="accordion-collapse collapse" data-bs-parent="#accordions">
-                                            <div class="accordion-body">
-                                                Ne summo dictas pertinacia nam. Illum cetero vocent ei vim, case regione
-                                                signiferumque vim te. Ex mea quem munere lobortis. Duis aute irure dolor in
-                                                reprehenderit in voluptate velit esse cillum.
+                                    @foreach($faqs as $index => $faq)
+                                        <div class="accordion-item wow fadeInUp" data-wow-delay="{{ $faq['delay'] ?? '.3s' }}">
+                                            <h4 class="accordion-header">
+                                                <button class="accordion-button {{ $index !== 1 ? 'collapsed' : '' }}"
+                                                    type="button" data-bs-toggle="collapse" data-bs-target="#faq{{ $index }}"
+                                                    aria-expanded="{{ $index === 1 ? 'true' : 'false' }}"
+                                                    aria-controls="faq{{ $index }}">
+                                                    {{ $faq['title'] }}
+                                                </button>
+                                            </h4>
+                                            <div id="faq{{ $index }}"
+                                                class="accordion-collapse collapse {{ $index === 1 ? 'show' : '' }}"
+                                                data-bs-parent="#accordions">
+                                                <div class="accordion-body">
+                                                    {!! $faq['description'] !!}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="accordion-item wow fadeInUp" data-wow-delay=".5s">
-                                        <h4 class="accordion-header">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#faq233" aria-expanded="true" aria-controls="faq233">
-                                                Can I use the demos made by Ewebot?
-                                            </button>
-                                        </h4>
-                                        <div id="faq233" class="accordion-collapse collapse show"
-                                            data-bs-parent="#accordions">
-                                            <div class="accordion-body">
-                                                Ne summo dictas pertinacia nam. Illum cetero vocent ei vim, case regione
-                                                signiferumque vim te. Ex mea quem munere lobortis. Duis aute irure dolor in
-                                                reprehenderit in voluptate velit esse cillum.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-item wow fadeInUp" data-wow-delay=".7s">
-                                        <h4 class="accordion-header">
-                                            <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#faq3333" aria-expanded="false"
-                                                aria-controls="faq3333">
-                                                Why didn’t you showcase my submission?
-                                            </button>
-                                        </h4>
-                                        <div id="faq3333" class="accordion-collapse collapse" data-bs-parent="#accordions">
-                                            <div class="accordion-body">
-                                                Ne summo dictas pertinacia nam. Illum cetero vocent ei vim, case regione
-                                                signiferumque vim te. Ex mea quem munere lobortis. Duis aute irure dolor in
-                                                reprehenderit in voluptate velit esse cillum.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-item wow fadeInUp" data-wow-delay=".9s">
-                                        <h4 class="accordion-header">
-                                            <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#faq4444" aria-expanded="false"
-                                                aria-controls="faq4444">
-                                                Why didn’t you showcase my submission?
-                                            </button>
-                                        </h4>
-                                        <div id="faq4444" class="accordion-collapse collapse" data-bs-parent="#accordions">
-                                            <div class="accordion-body">
-                                                Ne summo dictas pertinacia nam. Illum cetero vocent ei vim, case regione
-                                                signiferumque vim te. Ex mea quem munere lobortis. Duis aute irure dolor in
-                                                reprehenderit in voluptate velit esse cillum.
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -228,7 +182,7 @@
     </section>
 
     <!--<< Brand Section Start >>-->
-    <div class="brand-section-2 fix section-bg-2 mt-0">
+    <div class="brand-section-2 fix section-bg-2 mt-0 d-none">
         <div class="container">
             <div class="brand-wrapper style-2">
                 <div class="brand-carousel-active-2">

@@ -38,6 +38,16 @@
     <link rel="stylesheet" href="{{ asset('/style.css') }}">
 </head>
 
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <body>
     <!-- Back To Top Start -->
     <div class="scroll-up">
@@ -147,19 +157,19 @@
                         </div>
                         <div class="social-icon d-flex align-items-center">
                             @if(!empty(optional($siteSetting)->facebook))
-                                <a href="{{ optional($siteSetting)->facebook }}"><i class="fab fa-facebook-f"></i></a>
+                                <a href="{{ optional($siteSetting)->facebook }}" target="_blank"><i class="fab fa-facebook-f"></i></a>
                             @endif
                             @if(!empty(optional($siteSetting)->twitter))
-                                <a href="{{ optional($siteSetting)->twitter }}"><i class="fab fa-twitter"></i></a>
+                                <a href="{{ optional($siteSetting)->twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>
                             @endif
                             @if(!empty(optional($siteSetting)->youtube))
-                                <a href="{{ optional($siteSetting)->youtube }}"><i class="fab fa-youtube"></i></a>
+                                <a href="{{ optional($siteSetting)->youtube }}" target="_blank"><i class="fab fa-youtube"></i></a>
                             @endif
                             @if(!empty(optional($siteSetting)->linkedin))
-                                <a href="{{ optional($siteSetting)->linkedin }}"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="{{ optional($siteSetting)->linkedin }}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                             @endif
                             @if(!empty(optional($siteSetting)->instagram))
-                                <a href="{{ optional($siteSetting)->instagram }}"><i class="fab fa-instagram"></i></a>
+                                <a href="{{ optional($siteSetting)->instagram }}" target="_blank"><i class="fab fa-instagram"></i></a>
                             @endif
                         </div>
                     </div>
@@ -238,7 +248,8 @@
                                             </li>
                                             <li><a href="/about">About</a></li>
                                             <li><a href="/news">Blog</a></li>
-                                            <li><a href="/service">Visa</a></li>
+                                            <!-- <li><a href="/services">Visa</a></li> -->
+                                            <li><a href="/courses">Visa</a></li>
                                             <li><a href="/contact">Contact</a></li>
                                         </ul>
                                     </nav>

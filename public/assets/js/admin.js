@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     setTimeout(() => {
         if (typeof tinymce !== 'undefined') {
             tinymce.init({
@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 automatic_uploads: true,
                 file_picker_types: 'image',
                 images_upload_url: '/admin/tinymce/upload', // Use your route here
-                images_upload_handler: function(blobInfo) {
-                    return new Promise(function(resolve, reject) {
+                images_upload_handler: function (blobInfo) {
+                    return new Promise(function (resolve, reject) {
                         const xhr = new XMLHttpRequest();
                         xhr.open('POST', '/admin/tinymce/upload');
                         xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Toggle password visibility
-if(document.querySelector('#togglePassword')) {
+if (document.querySelector('#togglePassword')) {
     document.getElementById('togglePassword').addEventListener('click', function () {
         const passwordField = document.getElementById('password');
         const eyeIcon = document.getElementById('eyeIcon');
@@ -78,3 +78,13 @@ if(document.querySelector('#togglePassword')) {
         }
     });
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const menuItems = document.querySelectorAll('.menu-item');
+    menuItems.forEach(item => {
+        item.addEventListener('click', function () {
+            menuItems.forEach(i => i.classList.remove('active', 'bg-light'));
+            this.classList.add('active', 'bg-light');
+        });
+    });
+});
