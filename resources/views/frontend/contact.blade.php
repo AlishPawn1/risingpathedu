@@ -73,38 +73,46 @@
                                         </div>
                                     </div>
                                 @endif
-                                <div class="col-lg-6 wow fadeInUp" data-wow-delay=".9s">
-                                    <div class="info-items">
-                                        <div class="icon">
-                                            <i class="fas fa-share-alt"></i>
-                                        </div>
-                                        <div class="content">
-                                            <h5>Social</h5>
-                                            <div class="social-icon d-flex align-items-center">
-                                                @if(!empty(optional($siteSetting)->facebook))
-                                                    <a href="{{ optional($siteSetting)->facebook }}" target="_blank"><i
-                                                            class="fab fa-facebook-f"></i></a>
-                                                @endif
-                                                @if(!empty(optional($siteSetting)->twitter))
-                                                    <a href="{{ optional($siteSetting)->twitter }}" target="_blank"><i
-                                                            class="fab fa-twitter"></i></a>
-                                                @endif
-                                                @if(!empty(optional($siteSetting)->youtube))
-                                                    <a href="{{ optional($siteSetting)->youtube }}" target="_blank"><i
-                                                            class="fab fa-youtube"></i></a>
-                                                @endif
-                                                @if(!empty(optional($siteSetting)->linkedin))
-                                                    <a href="{{ optional($siteSetting)->linkedin }}" target="_blank"><i
-                                                            class="fab fa-linkedin-in"></i></a>
-                                                @endif
-                                                @if(!empty(optional($siteSetting)->instagram))
-                                                    <a href="{{ optional($siteSetting)->instagram }}" target="_blank"><i
-                                                            class="fab fa-instagram"></i></a>
-                                                @endif
+                                @if(
+                                        !empty(optional($siteSetting)->facebook)
+                                        || !empty(optional($siteSetting)->twitter)
+                                        || !empty(optional($siteSetting)->youtube)
+                                        || !empty(optional($siteSetting)->linkedin)
+                                        || !empty(optional($siteSetting)->instagram)
+                                    )
+                                    <div class="col-lg-6 wow fadeInUp" data-wow-delay=".9s">
+                                        <div class="info-items">
+                                            <div class="icon">
+                                                <i class="fas fa-share-alt"></i>
+                                            </div>
+                                            <div class="content">
+                                                <h5>Social</h5>
+                                                <div class="social-icon d-flex align-items-center">
+                                                    @if(!empty(optional($siteSetting)->facebook))
+                                                        <a href="{{ optional($siteSetting)->facebook }}" target="_blank"><i
+                                                                class="fab fa-facebook-f"></i></a>
+                                                    @endif
+                                                    @if(!empty(optional($siteSetting)->twitter))
+                                                        <a href="{{ optional($siteSetting)->twitter }}" target="_blank"><i
+                                                                class="fab fa-twitter"></i></a>
+                                                    @endif
+                                                    @if(!empty(optional($siteSetting)->youtube))
+                                                        <a href="{{ optional($siteSetting)->youtube }}" target="_blank"><i
+                                                                class="fab fa-youtube"></i></a>
+                                                    @endif
+                                                    @if(!empty(optional($siteSetting)->linkedin))
+                                                        <a href="{{ optional($siteSetting)->linkedin }}" target="_blank"><i
+                                                                class="fab fa-linkedin-in"></i></a>
+                                                    @endif
+                                                    @if(!empty(optional($siteSetting)->instagram))
+                                                        <a href="{{ optional($siteSetting)->instagram }}" target="_blank"><i
+                                                                class="fab fa-instagram"></i></a>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endif
                             </div>
                             <div class="contact-image wow fadeInUp" data-wow-delay=".4s">
                                 <img src="{{ asset('assets/img/contact.jpg') }}" alt="img">
@@ -155,10 +163,14 @@
     <!--<< Map Section Start >>-->
     <div class="map-section">
         <div class="google-map wow fadeInUp" data-wow-delay=".7s">
-            <iframe src="https://maps.google.com/maps?q=Putalisadak%2C%20Kathmandu%2044600&z=16&output=embed" width="100%"
-                height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                title="Map: Putalisadak, Kathmandu">
-            </iframe>
+            @if(!empty(optional($siteSetting)->map_embed))
+                {!! optional($siteSetting)->map_embed !!}
+            @else
+                <iframe src="https://maps.google.com/maps?q=Putalisadak%2C%20Kathmandu%2044600&z=16&output=embed" width="100%"
+                    height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                    title="Map: Putalisadak, Kathmandu">
+                </iframe>
+            @endif
         </div>
     </div>
 @endsection

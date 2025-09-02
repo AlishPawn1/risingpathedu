@@ -47,7 +47,7 @@
                             <li><a href="/about">About</a></li>
                             <li><a href="/team">Meet Experts</a></li>
                             <li><a href="/news">News & Media</a></li>
-                            <li><a href="/projects">Projects</a></li>
+                            <li><a href="/services">services</a></li>
                             <li><a href="/contact">Contact</a></li>
                         </ul>
                     </div>
@@ -58,10 +58,10 @@
                             <h5>Visa</h5>
                         </div>
                         <ul class="list-items">
-                            @foreach($allServices->take(5) as $service)
+                            @foreach($allCourse->take(5) as $course)
                                 <li>
-                                    <a href="{{ route('service.show', $service->slug) }}">
-                                        {{ $service->title }}
+                                    <a href="{{ route('courses.show', $course->slug) }}">
+                                        {{ $course->name }}
                                         <span><i class="fas fa-chevron-right"></i></span>
                                     </a>
                                 </li>

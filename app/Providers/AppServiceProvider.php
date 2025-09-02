@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Courses;
 use App\Models\Service;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
@@ -33,6 +34,9 @@ class AppServiceProvider extends ServiceProvider
 
             $allServices = Service::all();
             $view->with('allServices', $allServices);
+
+            $allCourse = Courses::all();
+            $view->with('allCourse', $allCourse);
         });
     }
 }

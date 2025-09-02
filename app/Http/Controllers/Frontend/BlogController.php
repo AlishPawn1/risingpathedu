@@ -19,6 +19,8 @@ class BlogController extends Controller
             $query->where('title', 'like', "%{$keywords}%");
         }
 
+        $query->where('status', 'published');
+
         $popularBlogs = Blog::withCount('comments')
             ->orderByDesc('comments_count')
             ->take(3)
@@ -33,7 +35,10 @@ class BlogController extends Controller
     }
     public function show($slug)
     {
-        $blog = Blog::where('slug', $slug)->with(['comments', 'tags'])->firstOrFail();
+        $blog = Blog::where('slug', $slug)
+            ->where('status', 'published')
+            ->with(['comments', 'tags'])
+            ->firstOrFail();
 
         // Get popular blogs (e.g., by views or latest)
         $popularBlogs = Blog::orderBy('views', 'desc')->take(5)->get();

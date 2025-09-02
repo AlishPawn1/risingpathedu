@@ -1,5 +1,5 @@
 <div class="col-md-6">
-    <label class="form-label">Title</label>
+    <label class="form-label">Title <span class="required">*</span></label>
     <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"
         value="{{ old('title', $blog->title ?? '') }}" required>
     @error('title')
@@ -8,7 +8,7 @@
 </div>
 
 <div class="col-md-6">
-    <label class="form-label">Author</label>
+    <label class="form-label">Author <span class="required">*</span></label>
     <input type="text" name="author" class="form-control @error('author') is-invalid @enderror"
         value="{{ old('author', $blog->author ?? '') }}" required>
     @error('author')
@@ -72,7 +72,7 @@
 </div>
 
 <div class="col-md-6">
-    <label class="form-label">Image</label>
+    <label class="form-label">Image <span class="required">*</span></label>
     <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
     @if(!empty($blog->image))
         <div class="mt-2"><img src="{{ asset('storage/' . $blog->image) }}" alt="" style="max-height:120px"></div>

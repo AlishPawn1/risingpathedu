@@ -16,7 +16,7 @@
     <section class="countries-section fix section-padding">
         <div class="container">
             <div class="row g-4">
-                @foreach ($countries->where('is_active', 1)->take(6) as $country)
+                @foreach ($countries->take(6) as $country)
                     <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="{{ 0.3 + (0.2 * $loop->index) }}s">
                         <div class="countries-card-items">
                             <div class="thumb">

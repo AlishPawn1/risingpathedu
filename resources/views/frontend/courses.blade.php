@@ -22,6 +22,9 @@
                             <div class="service-card-items {{ $index == 2 ? 'active' : '' }}">
                                 <div>
                                     <h3><a href="{{ url('course/' . $course->slug) }}">{{ $course->name }}</a></h3>
+                                    <span class="duration-wrapper">
+                                        <i class="far fa-clock"></i> {{ $course->duration }}
+                                    </span>
                                     <p>
                                         {!! Str::limit($course->description, 50) !!}
                                     </p>

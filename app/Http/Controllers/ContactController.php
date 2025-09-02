@@ -40,7 +40,7 @@ class ContactController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'phone' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|regex:/^[0-9+\-\s]{7,15}$/',
             'service' => 'nullable|string|max:255',
             'message' => 'required|string|max:2000',
         ]);

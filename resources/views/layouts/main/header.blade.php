@@ -35,7 +35,7 @@
     <!--<< Main.css >>-->
     <link rel="stylesheet" href="{{ asset('/assets/css/main.css') }}">
     <!--<< Style.css >>-->
-    <link rel="stylesheet" href="{{ asset('/style.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('/style.css') }}"> -->
 </head>
 
 @if($errors->any())
@@ -294,9 +294,9 @@
         <div class="search-inner">
             <i class="fas fa-times search-close" id="search-close"></i>
             <div class="search-cell">
-                <form method="get">
+                <form method="get" action="{{ route('search') }}">
                     <div class="search-field-holder">
-                        <input type="search" class="main-search-input" placeholder="Search...">
+                        <input type="search" class="main-search-input" name="query" placeholder="Search...">
                     </div>
                 </form>
             </div>

@@ -6079,7 +6079,7 @@ input.main-search-input::placeholder {
   gap: 20px;
   background-color: var(--white);
   box-shadow: var(---box-shadow);
-  margin-top: 30px;
+  /* margin-top: 30px; */
   padding: 40px 25px;
   border-radius: 10px;
   transition: all 0.4s ease-in-out;
@@ -10048,6 +10048,16 @@ p.sticky-label {
   padding: 18px 30px;
   color: var(--text);
 }
+.form-clt{
+  position: relative;
+}
+.form-clt .error{
+  position: absolute;
+  bottom: -4px;
+  right: 6px;
+  font-size: 12px;
+  color: red;
+}
 .contact-wrapper .contact-left .form-clt textarea {
   padding: 18px 30px 90px;
 }
@@ -11210,4 +11220,19 @@ p.sticky-label {
 }
 .back-link:hover {
   text-decoration: underline;
+}
+.duration-wrapper{
+  display: inline-flex;
+  align-items: center;
+  background: var(--black);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  line-height: 1;
+  gap: 8px;
+  margin-bottom: 10px;
 }

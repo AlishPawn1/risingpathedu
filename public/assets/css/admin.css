@@ -143,6 +143,10 @@ body {
   padding: 12px 16px !important;
 }
 
+.form-select{
+  padding-right: 32px !important;
+}
+
 .submit-btn:hover {
   background-color: #1d4ed8;
 }

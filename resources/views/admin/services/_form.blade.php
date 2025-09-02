@@ -8,7 +8,7 @@
   </div>
 
   <div class="col-md-6">
-    <label class="form-label">Short Description</label>
+    <label class="form-label">Short Description *</label>
     <input name="short_description" class="form-control"
       value="{{ old('short_description', $service->short_description ?? '') }}">
     @error('short_description')
@@ -17,7 +17,7 @@
   </div>
 
   <div class="col-12">
-    <label class="form-label">Description</label>
+    <label class="form-label">Description *</label>
     <textarea name="description" id="description-editor" class="form-control"
       rows="4">{{ old('description', $service->description ?? '') }}</textarea>
     @error('description')
@@ -37,7 +37,7 @@
   </div>
 
   <div class="col-md-6">
-    <label class="form-label">Icon</label>
+    <label class="form-label">Icon *</label>
     <input type="file" name="icon" class="form-control">
     @if(!empty($service?->icon))
       <img src="{{ asset('storage/' . $service->icon) }}" class="img-thumbnail mt-2" style="max-height:120px">

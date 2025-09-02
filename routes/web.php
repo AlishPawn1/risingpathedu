@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     TinyMCEController,
     BlogInteractionController,
-    ContactController
+    ContactController,
+    SearchController
 };
 use App\Http\Controllers\Admin\{
     AdminAuthController,
@@ -64,6 +65,8 @@ Route::get('/faq', [FrontendFaqController::class, 'index'])->name('faq.index');
 
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::view('/contact', 'frontend.contact');
+
+Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 Route::view('/coaching', 'frontend.coaching');
 Route::view('/team', 'frontend.team');
