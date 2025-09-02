@@ -276,7 +276,7 @@
                 <h2 class="title-anim">Countries We Support <br> for Immigration.</h2>
             </div>
             <div class="row">
-                @foreach ($countries->where('is_active', 1)->take(6) as $country)
+                @foreach ($countries->take(6) as $country)
                     <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="{{ 0.3 + (0.2 * $loop->index) }}s">
                         <div class="countries-card-items">
                             <div class="thumb">

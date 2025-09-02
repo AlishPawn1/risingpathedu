@@ -56,8 +56,7 @@
                         <img src="{{ asset('storage/' . $team->image) }}" alt="team-img" class="img-thumbnail"
                           style="width: 100px; height: 100px; object-fit: cover;">
                       @else
-                        <img src="{{ asset('assets/img/team/default.png') }}" alt="default-img" class="img-thumbnail"
-                          style="width: 100px; height: 100px; object-fit: cover;">
+                        N/A
                       @endif
                     </td>
                     <td class="text-capitalize">{{ $team->name }}</td>

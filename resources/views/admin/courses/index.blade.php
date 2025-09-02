@@ -53,7 +53,7 @@
                                             @if ($course->image)
                                                 <img src="{{ asset('storage/' . $course->image) }}" alt="{{ $course->name }}" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover;">
                                             @else
-                                                <img src="{{ asset('assets/img/course/placeholder.jpg') }}" alt="placeholder" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover;">
+                                                N/A
                                             @endif
                                         </td>
                                         <td class="text-capitalize">{{ $course->name }}</td>

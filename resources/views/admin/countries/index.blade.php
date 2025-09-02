@@ -60,6 +60,8 @@
                     <td>
                       @if($c->flag)
                         <img src="{{ asset('storage/' . $c->flag) }}" class="img-thumbnail" style="max-height: 100px;">
+                      @else
+                        N/A
                       @endif
                     </td>
                     <td>{{ $c->name }}</td>
@@ -71,6 +73,8 @@
                     <td>
                       @if($c->image)
                         <img src="{{ asset('storage/' . $c->image) }}" class="img-thumbnail" style="max-height: 100px;">
+                      @else
+                        N/A
                       @endif
                     </td>
                     <td>

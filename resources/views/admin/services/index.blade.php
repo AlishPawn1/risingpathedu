@@ -50,8 +50,7 @@
                         <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->title }}" class="img-thumbnail"
                           style="width: 80px; height: 80px; object-fit: cover;">
                       @else
-                        <img src="{{ asset('assets/img/service/placeholder.jpg') }}" alt="placeholder" class="img-thumbnail"
-                          style="width: 80px; height: 80px; object-fit: cover;">
+                        N/A
                       @endif
                     </td>
                     <td class="text-capitalize">{{ $service->title }}</td>

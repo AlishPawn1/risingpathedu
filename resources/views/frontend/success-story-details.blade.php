@@ -18,8 +18,10 @@
             <a href="{{ url('/success-stories') }}" class="btn btn-outline-danger mb-4 d-inline-block"><i class="fas fa-arrow-left me-2"></i>Back</a>
             <div class="story-details">
                 <div class="card">
-                    <img src="{{ $successStory->image ? asset('storage/' . $successStory->image) : asset('assets/img/backfall-user.png') }}"
-                        alt="{{ $successStory->title }}-image" class="story-image">
+                    <div class="image-holder">
+                        <img src="{{ $successStory->image ? asset('storage/' . $successStory->image) : asset('assets/img/backfall-user.png') }}"
+                        alt="{{ $successStory->title }}-image" class="img-cover">
+                    </div>
                     <div class="card-body">
                         <h2>{{ $successStory->title }}</h2>
                         <h3>{{ $successStory->student_name }}</h3>

@@ -73,8 +73,7 @@
                         <img src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->title }}" class="img-thumbnail"
                           style="width: 100px; height: 100px; object-fit: cover;">
                       @else
-                        <img src="{{ asset('images/default.png') }}" alt="No image" class="img-thumbnail"
-                          style="width: 100px; height: 100px; object-fit: cover;">
+                        N/A
                       @endif
                     </td>
                     <td class="text-capitalize">{{ $blog->title }}</td>

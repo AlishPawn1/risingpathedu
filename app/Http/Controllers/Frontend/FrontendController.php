@@ -15,9 +15,9 @@ class FrontendController extends Controller
     // Homepage
     public function index()
     {
-        $services = Service::latest()->take(10)->get();
-        $countries = Country::latest()->take(10)->get();
-        $blogs = Blog::latest()->take(10)->get();
+        $services = Service::where('is_active', 1)->latest()->take(10)->get();
+        $countries = Country::where('is_active', 1)->latest()->take(10)->get();
+        $blogs = Blog::where('status', 1)->latest()->take(10)->get();
         $teams = Team::latest()->take(10)->get();
         $testimonials = Testimonials::latest()->take(10)->get();
 
