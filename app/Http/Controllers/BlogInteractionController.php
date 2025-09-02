@@ -22,7 +22,7 @@ class BlogInteractionController extends Controller
         ]);
         $blog->comments()->save($comment);
 
-        return redirect()->route('blogs.show', $blogId)->with('success', 'Comment added successfully.');
+        return back()->with('success', 'Comment added successfully.');
     }
 
     public function countView($blogId)
