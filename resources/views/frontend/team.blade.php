@@ -22,6 +22,7 @@
                             <div class="team-image">
                                 <img src="{{ $team->image ? asset('storage/' . $team->image) : asset('assets/img/team/01.jpg') }}"
                                     alt="{{ $team->name }}">
+                                @if($team->facebook || $team->twitter || $team->linkedin)
                                 <div class="social-profile">
                                     <span class="plus-btn"><i class="fas fa-share-alt"></i></span>
                                     <ul>
@@ -39,6 +40,7 @@
                                         @endif
                                     </ul>
                                 </div>
+                                @endif
                             </div>
                             <div class="team-content text-center box-shadow">
                                 <h5>
