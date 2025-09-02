@@ -29,7 +29,8 @@ class SearchController extends Controller
             ->paginate(9);
 
         $services = Service::where(function ($q) use ($query) {
-            $q->where('name', 'like', "%{$query}%")
+            $q->where('title', 'like', "%{$query}%")
+                ->orWhere('short_description', 'like', "%{$query}%")
                 ->orWhere('description', 'like', "%{$query}%");
         })
             ->where('is_active', 1)

@@ -137,7 +137,7 @@
                                 <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="{{ 0.2 * $index }}s">
                                     <div class="service-card-items {{ $index == 2 ? 'active' : '' }}">
                                         <div>
-                                            <h3><a href="{{ url('service/' . $service->slug) }}">{{ $service->name }}</a></h3>
+                                            <h3><a href="{{ url('service/' . $service->slug) }}">{{ $service->title }}</a></h3>
                                             <p>
                                                 {!! Str::limit($service->description, 50) !!}
                                             </p>
@@ -145,7 +145,7 @@
                                         <div>
                                             <div class="service-thumb">
                                                 <img src="{{ $service->image ? asset('storage/' . $service->image) : asset('assets/img/backfall-user.png') }}"
-                                                    alt="{{ $service->name }}-image">
+                                                    alt="{{ $service->title }}-image">
                                             </div>
                                             <a href="{{ url('service/' . $service->slug) }}" class="link-btn">
                                                 <span>read more</span>
