@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="col-lg-6 wow fadeInUp" data-wow-delay=".5s">
                                     <div class="form-clt">
-                                        <select name="service" class="form-select">
+                                        <select name="service">
                                             <option value="">Choose Services</option>
                                             <option value="Default sorting">Default sorting</option>
                                             <option value="Sort by popularity">Sort by popularity</option>

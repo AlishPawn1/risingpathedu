@@ -16,7 +16,7 @@ class SearchController extends Controller
 
         $blogs = Blog::where(function ($q) use ($query) {
             $q->where('title', 'like', "%{$query}%")
-                ->orWhere('content', 'like', "%{$query}%");
+                ->orWhere('description', 'like', "%{$query}%");
         })
             ->where('status', 'published')
             ->paginate(9);
